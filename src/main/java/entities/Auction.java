@@ -10,16 +10,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
+@NamedQuery(name = Auction.FIND_ALL, query = "select g from Auction g")
 public abstract class Auction implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -8947271574079458753L;
 
+	public static final String FIND_ALL = "findAll";
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	long id;
