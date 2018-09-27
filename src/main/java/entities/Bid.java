@@ -11,8 +11,7 @@ import javax.persistence.OneToOne;
 public class Bid {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	public static
-	long id;
+	public static long id;
 	
 	public static String name;
 	

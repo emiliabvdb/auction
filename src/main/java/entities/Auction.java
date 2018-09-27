@@ -18,6 +18,8 @@ public abstract class Auction implements Serializable{
 	/**
 	 * 
 	 */
+	public Auction() {
+		}
 	private static final long serialVersionUID = -8947271574079458753L;
 
 	@Id

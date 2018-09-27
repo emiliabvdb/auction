@@ -18,15 +18,17 @@ public class Auctions extends ArrayList<Auction> {
 	public Auctions() {
 		super();
 		}
-		public Auctions(Collection<? extends Auction> c) {
-			super(c);
-		}
 		
-		@XmlElement(name = "auction")
-		public List<Auction> getAuctions() {
-			return this;
-		}
-		public void setBooks(List<Auction> auctions) {
-			this.addAll(auctions);
-		}
+	public Auctions(Collection<? extends Auction> c) {
+		super(c);
+	}
+		
+	@XmlElement(name = "auction")
+	public List<Auction> getAuctions() {
+		return this;
+	}
+	
+	public void setBooks(List<Auction> auctions) {
+		this.addAll(auctions);
+	}
 }
