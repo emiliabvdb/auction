@@ -15,6 +15,8 @@ public class User extends SystemUser implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 5082373191804671329L;
+	
+	
 	String firstName;
 	String lastName;
 	Date dateOfBrith;

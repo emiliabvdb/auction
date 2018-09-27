@@ -16,7 +16,7 @@ import javax.persistence.OneToOne;
 
 @Entity
 @NamedQuery(name = Auction.FIND_ALL, query = "select g from Auction g")
-public abstract class Auction implements Serializable{
+public /*abstract*/ class Auction implements Serializable{
 	/**
 	 * 
 	 */
@@ -51,6 +51,8 @@ public abstract class Auction implements Serializable{
 	@OneToOne
 	Feedback feedback;
 	
+	/*
+	
 	abstract Bid getHighetBid();
 	
 	abstract User getOwer();
@@ -61,5 +63,5 @@ public abstract class Auction implements Serializable{
 	
 	abstract List<Bid> getAllBids();
 	
-
+*/
 }
