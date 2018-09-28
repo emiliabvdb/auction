@@ -63,7 +63,7 @@ public abstract class Auction implements Serializable{
 	
 	@OneToOne
 	Feedback feedback;
-	
+
 	public abstract Bid getHighetBid();
 	
 	abstract User getOwer();
@@ -74,6 +74,6 @@ public abstract class Auction implements Serializable{
 	
 	abstract List<Bid> getAllBids();
 
-	
+
 
 }

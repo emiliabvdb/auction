@@ -15,5 +15,6 @@ public class FeedbackId implements Serializable{
 	public Auction auction;
 	
 	// TODO implementer Hashcode og equals. 
+	
 
 }
