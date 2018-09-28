@@ -5,7 +5,7 @@ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
 http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="auction" transaction-type="JTA">
    	 <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-   	 <jta-data-source>java:app/jdbc/auction</jta-data-source>
+   	 <jta-data-source>java:app/db_g2018_13</jta-data-source>
 	 <class>entities.Address</class>
 	 <class>entities.Auction</class>
 	 <class>entities.Auctions</class>
@@ -19,7 +19,7 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	 <class>entities.SystemUserRole</class>
 	 <class>entities.User</class>
 	 <properties>
-	 	<property name="javax.persistence.schema-generation.database.action" value="create"/>
+	 	<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
 	 </properties>
 	</persistence-unit>
 </persistence>

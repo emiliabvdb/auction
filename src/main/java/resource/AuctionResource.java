@@ -18,7 +18,7 @@ import javax.ws.rs.core.Response;
 import entities.Auction;
 import persistence.AuctionPersistence;
 
-@Path("/auction")
+@Path("auction")
 @Stateless
 @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -27,11 +27,11 @@ public class AuctionResource {
 	@EJB
 	AuctionPersistence aem;
 	
-	/**
+	
 	@GET
 	public List<Auction> getList() {
 		return aem.findAll();
-	}**/
+	}
 	
 	@Path("/{id}")
 	@GET

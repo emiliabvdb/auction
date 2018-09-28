@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlElement;
@@ -20,10 +21,13 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 @Entity
 @XmlRootElement
 @XmlSeeAlso(Bid.class)
+@NamedQuery(name=Auction.FIND_ALL, query = "SELECT * FROM Auction")
 public abstract class Auction implements Serializable{
 	/**
 	 * 
 	 */
+	
+	public final static String FIND_ALL = "FindAllAuctions";
 	public Auction() {
 		super();
 		}
