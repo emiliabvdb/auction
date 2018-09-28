@@ -9,32 +9,33 @@ public class EnglishAuction extends Auction{
 
 	@Override
 	public Bid getHighetBid() {
-		// TODO Auto-generated method stub
-		return null;
+		Bid highest = null;
+		for (int i = 0; i < bid.size(); i++) {
+			if(bid.get(i).amount > highest.amount) {
+				highest = bid.get(i);
+			}
+		}
+		return highest;
 	}
 
 	@Override
-	User getOwer() {
-		// TODO Auto-generated method stub
-		return null;
+	User getOwner() {
+		return this.owner;
 	}
 
 	@Override
 	Date getStarTime() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.startDate;
 	}
 
 	@Override
 	Date getEndTime() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.endDate;
 	}
 
 	@Override
 	List<Bid> getAllBids() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.bid;
 	}
 	
 }
