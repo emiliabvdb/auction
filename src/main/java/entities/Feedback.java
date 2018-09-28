@@ -12,5 +12,7 @@ public class Feedback {
 	short rating;
 	String comment;
 	
+	
+	
 
 }

@@ -25,5 +25,6 @@ public class User extends SystemUser implements Serializable{
 	List<Bid> bids;
 	List<Auction> auctions;
 	
+	
 
 }
