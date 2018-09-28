@@ -1,5 +1,7 @@
 package rest;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -16,10 +18,9 @@ import javax.ws.rs.core.Response;
 import entities.Auction;
 import entities.Auctions;
 import entities.Bid;
-import entities.Bids;
 
 
-@Path("/auction/WEB-INF/classes")
+@Path("/rest") //path??
 @Stateless
 public class RestService {
 
@@ -57,8 +58,9 @@ public class RestService {
 	@GET
 	@Path("/{id}/bids/")
 	public Response getCurrentBids(@PathParam("id") String id) {
-		TypedQuery<Bid> query = em.createNamedQuery(Bid.name, Bid.class);
-		Auction bids = new Auction(query.getResultList());
+		int idInt = Integer.parseInt(id);
+		Auction auction = em.find(Auction.class, idInt);
+		List<Bid> bids = auction.getBids();
 		return Response.ok(bids).build();
 	}
 	
@@ -72,13 +74,10 @@ public class RestService {
 		Auction auction = em.find(Auction.class, aidInt);
 		if (auction == null)
 			throw new NotFoundException();
-
 		int bidInt = Integer.parseInt(biid);
-		Bid bid = em.find(Bid.class, bidInt);
+		Bid bid = auction.getBids().get(bidInt);
 		if (bid == null)
 			throw new NotFoundException();
-		
-		//TODO 
 		return Response.ok(bid).build();
 	}
 	

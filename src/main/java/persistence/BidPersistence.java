@@ -19,7 +19,7 @@ public class BidPersistence {
 	}
 	
 	/**public List<Bid> findAll(){
-		return this.em.createNamedQuery(Bid.FIND_ALL).getResultList();
+		return this.em.createNamedQuery(Bid.class).getResultList();
 	}**/
 	
 	public void create(Bid bid) {

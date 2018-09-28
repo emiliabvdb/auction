@@ -27,14 +27,16 @@ public abstract class Auction implements Serializable{
 	public Auction() {
 		super();
 		}
-		public Auction(Collection<? extends Bid> c) {
-			super();
-		}
+	
+	public Auction(Collection<? extends Bid> c) {
+		super();
+	}
 		
-		@XmlElement(name = "Bid")
-		public List<Bid> getBids() {
-			return this.getBids();
-		}
+	@XmlElement(name = "Bid")
+	public List<Bid> getBids() {
+		return this.getBids();
+	}
+		
 	private static final long serialVersionUID = -8947271574079458753L;
 
 	@Id
@@ -59,6 +61,7 @@ public abstract class Auction implements Serializable{
 	List<Category> category;
 	
 	@OneToMany
+	public
 	List<Bid> bid;
 	
 	@OneToOne
