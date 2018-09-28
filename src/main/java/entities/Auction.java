@@ -43,7 +43,7 @@ public abstract class Auction implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	long id;
 	
-	public static String productName;
+	public String productName;
 	
 	double rating;
 	
@@ -69,7 +69,7 @@ public abstract class Auction implements Serializable{
 
 	public abstract Bid getHighetBid();
 	
-	abstract User getOwer();
+	abstract User getOwner();
 	
 	abstract Date getStarTime();
 	
