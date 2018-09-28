@@ -18,9 +18,9 @@ public class AuctionPersistence {
 		return this.em.find(Auction.class, id);
 	}
 	
-	public List<Auction> findAll(){
+	/**public List<Auction> findAll(){
 		return this.em.createNamedQuery(Auction.FIND_ALL).getResultList();
-	}
+	}**/
 	
 	public void create(Auction auction) {
 		this.em.persist(auction);

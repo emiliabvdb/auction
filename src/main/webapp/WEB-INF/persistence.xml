@@ -14,6 +14,7 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	 <class>entities.Category</class>
 	 <class>entities.Feedback</class>
 	 <class>entities.FeedbackId</class>
+	 <class>entities.Main</class>
 	 <class>entities.SystemUser</class>
 	 <class>entities.SystemUserRole</class>
 	 <class>entities.User</class>

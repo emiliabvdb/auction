@@ -1,6 +1,7 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -12,13 +13,27 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
 
 @Entity
+@XmlRootElement
+@XmlSeeAlso(Bid.class)
 public abstract class Auction implements Serializable{
 	/**
 	 * 
 	 */
 	public Auction() {
+		super();
+		}
+		public Auction(Collection<? extends Bid> c) {
+			super();
+		}
+		
+		@XmlElement(name = "Bid")
+		public List<Bid> getBids() {
+			return this.getBids();
 		}
 	private static final long serialVersionUID = -8947271574079458753L;
 

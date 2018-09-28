@@ -19,7 +19,7 @@ import entities.Bid;
 import entities.Bids;
 
 
-@Path("/auction")
+@Path("/auction/WEB-INF/classes")
 @Stateless
 public class RestService {
 
@@ -58,7 +58,7 @@ public class RestService {
 	@Path("/{id}/bids/")
 	public Response getCurrentBids(@PathParam("id") String id) {
 		TypedQuery<Bid> query = em.createNamedQuery(Bid.name, Bid.class);
-		Bids bids = new Bids(query.getResultList());
+		Auction bids = new Auction(query.getResultList());
 		return Response.ok(bids).build();
 	}
 	

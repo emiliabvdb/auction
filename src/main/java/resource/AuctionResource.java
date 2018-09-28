@@ -27,10 +27,11 @@ public class AuctionResource {
 	@EJB
 	AuctionPersistence aem;
 	
+	/**
 	@GET
 	public List<Auction> getList() {
 		return aem.findAll();
-	}
+	}**/
 	
 	@Path("/{id}")
 	@GET

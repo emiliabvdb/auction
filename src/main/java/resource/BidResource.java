@@ -26,11 +26,11 @@ public class BidResource {
 	
 	@Inject
 	BidPersistence bem;
-	
+	/**
 	@GET
 	public List<Bid> getList() {
 		return bem.findAll();
-	}
+	}**/
 	
 	@Path("/{id}")
 	@GET
