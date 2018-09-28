@@ -76,6 +76,7 @@ public abstract class Auction implements Serializable{
 	abstract Date getEndTime();
 	
 	abstract List<Bid> getAllBids();
+
 	
 
 }

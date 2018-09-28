@@ -5,10 +5,13 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
-
+/*
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+*/
+
 import javax.persistence.Persistence;
 
 import entities.Address;
@@ -86,7 +89,7 @@ public class Main {
 		mikal.dateOfBrith = new GregorianCalendar(1995, Calendar.AUGUST, 21).getTime();
 		
 		//creating an auction
-		Auction jacketAuction = null;// = new Auction();
+		Auction jacketAuction = new Auction();
 		jacketAuction.owner = emilia;
 		jacketAuction.productName="Brukt jakke";
 		jacketAuction.startDate = new GregorianCalendar(2018, Calendar.SEPTEMBER, 28).getTime();
@@ -112,7 +115,7 @@ public class Main {
 		jacketBid2.auction = jacketAuction;
 		
 		
-		Auction bildeAuct = null; // = new Auction();
+		Auction bildeAuct = new EnglishAuction();
 		bildeAuct.productName ="Stolen Child av AFK";
 		List<Category> catList2 = new ArrayList<Category>(); 
 		catList2.add(pynt);
