@@ -115,7 +115,7 @@ public class Main {
 		jacketBid2.auction = jacketAuction;
 		
 		
-		Auction bildeAuct = new Auction();
+		Auction bildeAuct = new EnglishAuction();
 		bildeAuct.productName ="Stolen Child av AFK";
 		List<Category> catList2 = new ArrayList<Category>(); 
 		catList2.add(pynt);

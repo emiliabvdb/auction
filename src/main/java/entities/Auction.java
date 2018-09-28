@@ -18,13 +18,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 
 @Entity
-<<<<<<< Updated upstream
 @XmlRootElement
 @XmlSeeAlso(Bid.class)
 public abstract class Auction implements Serializable{
-=======
-public class Auction implements Serializable{
->>>>>>> Stashed changes
 	/**
 	 * 
 	 */
@@ -68,17 +64,6 @@ public class Auction implements Serializable{
 	@OneToOne
 	Feedback feedback;
 	
-	public Auction(String prodName, double rating, Date sdate, Date edate, Boolean publ, User owner, List<Category> catList, Feedback feedback) {
-		Auction.productName = prodName;
-		this.rating = rating;
-		this.startDate = sdate;
-		this.endDate = edate;
-		this.published = publ;
-		this.owner = owner;
-		this.category = catList;
-		this.feedback = feedback; 
-	}
-/*	
 	public abstract Bid getHighetBid();
 	
 	abstract User getOwer();
@@ -88,7 +73,7 @@ public class Auction implements Serializable{
 	abstract Date getEndTime();
 	
 	abstract List<Bid> getAllBids();
-*/
+
 	
 
 }
