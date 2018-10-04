@@ -1,17 +1,23 @@
 package entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Address {
+@TableGenerator(name = "Address", allocationSize = 1)
+@NamedQuery(name = Address.FIND_ALL, query = "Select a From Address a")
+public class Address implements Serializable {
+
+    public final static String FIND_ALL = "FIND_ALL_ADDRESS";
+    private static final long serialVersionUID = -2604610351743251554L;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "Address")
     private Long id;
 
     private String streetAddress;
 
-    private short zipCode;
+    private Short zipCode;
 
     private String city;
 
@@ -19,10 +25,14 @@ public class Address {
 
     private String country;
 
-    private short floor;
+    private Short floor;
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getStreetAddress() {
@@ -33,11 +43,11 @@ public class Address {
         this.streetAddress = streetAddress;
     }
 
-    public short getZipCode() {
+    public Short getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(short zipCode) {
+    public void setZipCode(Short zipCode) {
         this.zipCode = zipCode;
     }
 
@@ -65,11 +75,11 @@ public class Address {
         this.country = country;
     }
 
-    public short getFloor() {
+    public Short getFloor() {
         return floor;
     }
 
-    public void setFloor(short floor) {
+    public void setFloor(Short floor) {
         this.floor = floor;
     }
 }

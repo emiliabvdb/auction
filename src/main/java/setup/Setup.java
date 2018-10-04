@@ -24,10 +24,10 @@ public class Setup {
     @PostConstruct
     public void setup() {
 
-        if (auctionDAO.findAll().size() == 0)
+/*        if (auctionDAO.findAll().size() == 0)
             this.generateAuctions();
         if (bidDAO.findAll().size() == 0)
-            this.generateBids();
+            this.generateBids();*/
 
     }
 

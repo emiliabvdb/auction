@@ -1,13 +1,16 @@
-/*
 package entity;
 
-import javax.DAO.Entity;
-import javax.DAO.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 
+@TableGenerator(name = "system_user", allocationSize = 1)
 @Entity
-public class SystemUser {
+public class SystemUser implements Serializable {
+
+    private static final long serialVersionUID = 5671951796348271942L;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "system_user")
     private String email;
 
     private String password;
@@ -38,30 +41,4 @@ public class SystemUser {
         this.role = role;
     }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((email == null) ? 0 : email.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        SystemUser other = (SystemUser) obj;
-        if (email == null) {
-            if (other.email != null)
-                return false;
-        } else if (!email.equals(other.email))
-            return false;
-        return true;
-    }
-
 }
-*/

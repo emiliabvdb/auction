@@ -1,34 +1,38 @@
-/*
 package entity;
 
+import javax.persistence.*;
+import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.DAO.*;
-
 @Entity
-@Inheritance (strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.JOINED)
+@NamedQuery(name = User.FIND_ALL, query = "Select a From User a")
 public class User extends SystemUser implements Serializable{
 
+	public final static String FIND_ALL = "FIND_ALL_USERS";
 	private static final long serialVersionUID = 5082373191804671329L;
-	
 	
 	private String firstName;
 
 	private String lastName;
 
-	private Date dateOfBrith;
+	private Date dateOfBirth;
 
+	@XmlTransient
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	private Address address;
 
+	@XmlTransient
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	private Address billingAddress;
 
+	@XmlTransient
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Bid> bids;
 
+	@XmlTransient
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Auction> auctions;
 
@@ -48,12 +52,12 @@ public class User extends SystemUser implements Serializable{
 		this.lastName = lastName;
 	}
 
-	public Date getDateOfBrith() {
-		return dateOfBrith;
+	public Date getDateOfBirth() {
+		return dateOfBirth;
 	}
 
-	public void setDateOfBrith(Date dateOfBrith) {
-		this.dateOfBrith = dateOfBrith;
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 
 	public Address getAddress() {
@@ -88,4 +92,3 @@ public class User extends SystemUser implements Serializable{
 		this.auctions = auctions;
 	}
 }
-*/

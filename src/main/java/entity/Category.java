@@ -1,28 +1,34 @@
-/*
 package entity;
 
-import javax.DAO.Entity;
-import javax.DAO.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 
+@TableGenerator(name = "category", allocationSize = 1)
 @Entity
-public class Category {
+public class Category implements Serializable {
 
-	@Id
-	private String name;
+    private static final long serialVersionUID = 2101360422378844320L;
 
-	private String description;
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "category")
+    private String name;
 
-	public String getName() {
-		return name;
-	}
+    private String description;
 
-	public String getDescription() {
-		return description;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
 }
-*/

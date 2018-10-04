@@ -2,18 +2,34 @@ package entity;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import java.io.Serializable;
 import java.util.Date;
 
+@TableGenerator(name = "bid", allocationSize = 1)
 @Entity
 @XmlRootElement
 @NamedQuery(name = Bid.FIND_ALL, query = "Select b From Bid b")
-public class Bid {
+@NamedQuery(name = Bid.FIND_ALL_ON_AUCTION, query = "Select b From Bid b Where b.auction.id = :auctionId")
+@NamedQuery(name = Bid.FIND_ON_AUCTION, query = "Select b From Bid b Where b.auction.id = :auctionId And b.id :id")
+@NamedQuery(name = Bid.FIND_ALL_ON_OWNER, query = "Select b From Bid b Where b.owner.email = :ownerId")
+public class Bid implements Serializable {
 
     public final static String FIND_ALL = "FIND_ALL_BIDS";
+    public final static String FIND_ALL_ON_AUCTION = "FIND_ALL_BIDS_ON_AUCTION";
+    public final static String FIND_ON_AUCTION = "FIND_BID_ON_AUCTION";
+    public final static String FIND_ALL_ON_OWNER = "FIND_ALL_BIDS_ON_OWNER";
+
+    private static final long serialVersionUID = 2992572541056266703L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "bid")
     private Long id;
+
+    @Id
+    @XmlTransient
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private Auction auction;
 
     private String name;
 
@@ -22,13 +38,9 @@ public class Bid {
     @Temporal(TemporalType.TIMESTAMP)
     private Date timePlaced;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Auction auction;
-
-/*
+    @XmlTransient
     @OneToOne(cascade = CascadeType.ALL)
-    private User ower;
-*/
+    private User owner;
 
     public Long getId() {
         return id;
@@ -66,13 +78,11 @@ public class Bid {
         this.auction = auction;
     }
 
-/*
-    public entity.User getOwer() {
-        return ower;
+    public User getOwner() {
+        return owner;
     }
 
-    public void setOwer(entity.User ower) {
-        this.ower = ower;
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
-*/
 }
