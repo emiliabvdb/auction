@@ -1,8 +1,8 @@
 /*
-package entities;
+package entity;
 
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
+import javax.DAO.EmbeddedId;
+import javax.DAO.Entity;
 
 @Entity
 public class Feedback {

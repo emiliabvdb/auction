@@ -1,9 +1,9 @@
 /*
-package entities;
+package entity;
 
 import java.io.Serializable;
 
-import javax.persistence.Embeddable;
+import javax.DAO.Embeddable;
 
 @Embeddable
 public class FeedbackId implements Serializable {

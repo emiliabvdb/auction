@@ -1,8 +1,8 @@
 /*
-package entities;
+package entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.DAO.Entity;
+import javax.DAO.Id;
 
 @Entity
 public class SystemUser {
