@@ -11,16 +11,16 @@ import entities.Bid;
 @Stateless
 public class BidPersistence {
 
-	@PersistenceContext(name = "auction")
+	@PersistenceContext(name = "AuctionPersistenceUnit")
 	EntityManager em;
 
 	public Bid findById(Long id){
 		return this.em.find(Bid.class, id);
 	}
 	
-	/**public List<Bid> findAll(){
-		return this.em.createNamedQuery(Bid.class).getResultList();
-	}**/
+	public List<Bid> findAll(){
+		return this.em.createNamedQuery(Bid.FIND_ALL).getResultList();
+	}
 	
 	public void create(Bid bid) {
 		this.em.persist(bid);

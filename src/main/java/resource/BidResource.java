@@ -1,9 +1,7 @@
 package resource;
 
-import java.util.List;
-
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -24,13 +22,8 @@ import persistence.BidPersistence;
 @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 public class BidResource {
 	
-	@Inject
+	@EJB
 	BidPersistence bem;
-	/**
-	@GET
-	public List<Bid> getList() {
-		return bem.findAll();
-	}**/
 	
 	@Path("/{id}")
 	@GET

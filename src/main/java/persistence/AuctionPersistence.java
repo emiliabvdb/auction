@@ -11,7 +11,7 @@ import entities.Auction;
 @Stateless
 public class AuctionPersistence {
 
-	@PersistenceContext(name = "auction")
+	@PersistenceContext(name = "AuctionPersistenceUnit")
 	EntityManager em;
 
 	public Auction findById(Long id){

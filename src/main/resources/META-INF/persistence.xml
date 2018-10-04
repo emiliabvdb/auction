@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+    <persistence-unit name="AuctionPersistenceUnit" transaction-type="JTA">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <jta-data-source>jdbc/db_g2018_13</jta-data-source>
+        <class>entities.Address</class>
+        <class>entities.Auction</class>
+        <class>entities.EnglishAuction</class>
+        <class>entities.Bid</class>
+<!--
+        <class>entities.User</class>
+        <class>entities.SystemUserRole</class>
+        <class>entities.SystemUser</class>
+        <class>entities.Category</class>
+        <class>entities.Feedback</class>
+        <class>entities.FeedbackId</class>
+-->
+        <properties>
+            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+        </properties>
+    </persistence-unit>
+</persistence>
