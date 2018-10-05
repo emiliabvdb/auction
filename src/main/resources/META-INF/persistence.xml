@@ -10,20 +10,19 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
         <class>entity.Auction</class>
         <class>entity.EnglishAuction</class>
         <class>entity.Bid</class>
-<!--
         <class>entity.User</class>
-        <class>entity.SystemUserRole</class>
         <class>entity.SystemUser</class>
         <class>entity.Category</class>
         <class>entity.Feedback</class>
-        <class>entity.FeedbackId</class>
--->
+
         <properties>
-            <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
-            <property name="eclipselink.create-ddl-jdbc-file-name" value="createDDL_ddlGeneration.jdbc"/>
-            <property name="eclipselink.drop-ddl-jdbc-file-name" value="dropDDL_ddlGeneration.jdbc"/>
-            <property name="eclipselink.ddl-generation.output-mode" value="both"/>
-            <!--<property name="javax.DAO.schema-generation.database.action" value="create"/>-->
+            <!--
+                        <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
+                        <property name="eclipselink.create-ddl-jdbc-file-name" value="createDDL_ddlGeneration.jdbc"/>
+                        <property name="eclipselink.drop-ddl-jdbc-file-name" value="dropDDL_ddlGeneration.jdbc"/>
+                        <property name="eclipselink.ddl-generation.output-mode" value="both"/>
+            -->
+            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
         </properties>
     </persistence-unit>
 </persistence>
