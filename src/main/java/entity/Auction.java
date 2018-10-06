@@ -11,19 +11,20 @@ import java.util.List;
 @Entity
 @XmlRootElement
 @NamedQuery(name = Auction.FIND_ALL, query = "Select a From Auction a")
+@NamedQuery(name = Auction.FIND_ALL_PUBLISHED, query = "Select a From Auction a Where a.published")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Auction implements Serializable {
 
     private static final long serialVersionUID = -8947271574079458753L;
 
     public final static String FIND_ALL = "FIND_ALL_AUCTIONS";
+    public final static String FIND_ALL_PUBLISHED = "FIND_ALL_ACUTIONS_PUBLISHED";
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "auction")
     private Long id;
 
     private String productName;
-
 
     private Double rating;
 
@@ -34,7 +35,6 @@ public abstract class Auction implements Serializable {
     private Date endDate;
 
     private Boolean published;
-
 
     @XmlTransient
     @ManyToOne(cascade = CascadeType.MERGE)

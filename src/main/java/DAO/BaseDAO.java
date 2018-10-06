@@ -18,4 +18,6 @@ public abstract class BaseDAO<T> {
 
     public abstract void delete(T t);
 
+    public abstract T update(T t);
+
 }

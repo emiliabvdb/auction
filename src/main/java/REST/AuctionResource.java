@@ -17,28 +17,28 @@ import java.util.List;
 public class AuctionResource {
 
 	@EJB
-	AuctionDAO aem;
+    AuctionDAO auctionDAO;
 
 	@GET
 	public List<Auction> getList() {
-		return aem.findAll();
+        return auctionDAO.findAll();
 	}
 
     @Path("{id}")
 	@GET
 	public Auction get(@PathParam("id") Long id) {
-		return aem.findById(id);
+        return auctionDAO.findById(id);
 	}
 	
 	@POST
     public Auction save(EnglishAuction auction) {
-		aem.create(auction);
+        auctionDAO.create(auction);
 		return auction;
 	}
 	
 	@DELETE
     public Auction delete(EnglishAuction auction) {
-		aem.delete(auction);
+        auctionDAO.delete(auction);
 		return auction;
 	}
 }

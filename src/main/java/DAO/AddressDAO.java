@@ -25,4 +25,9 @@ public class AddressDAO extends BaseDAO<Address> {
     public void delete(Address address) {
         this.em.remove(address);
     }
+
+    @Override
+    public Address update(Address address) {
+        return this.em.merge(address);
+    }
 }

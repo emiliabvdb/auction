@@ -43,4 +43,9 @@ public class BidDAO extends BaseDAO<Bid> {
 	public void delete(Bid bid) {
 		this.em.remove(bid);
 	}
+
+    @Override
+    public Bid update(Bid bid) {
+        return this.em.merge(bid);
+    }
 }

@@ -1,5 +1,6 @@
 package REST;
 
+import DAO.AuctionDAO;
 import DAO.BidDAO;
 import entity.Bid;
 
@@ -13,31 +14,35 @@ import java.util.List;
 @Stateless
 @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-public class AuctionBidResource {
+public class BidResource {
 
     @EJB
-    BidDAO bem;
+    private BidDAO bidDAO;
+
+    @EJB
+    private AuctionDAO auctionDAO;
 
     @GET
     public List<Bid> getList(@PathParam("auctionId") Long auctionId) {
-        return bem.findAllOnAuction(auctionId);
+        return bidDAO.findAllOnAuction(auctionId);
     }
 
     @GET
     @Path("{id}")
     public Bid get(@PathParam("auctionId") Long auctionId, @PathParam("id") Long id) {
-        return bem.findOnAuctionById(auctionId, id);
+        return bidDAO.findOnAuctionById(auctionId, id);
     }
 
     @POST
     public Bid save(@PathParam("auctionId") Long auctionId, Bid bid) {
-        bem.create(bid);
+        bid.setAuction(auctionDAO.findById(auctionId));
+        bidDAO.create(bid);
         return bid;
     }
 
     @DELETE
     public Bid delete(Bid bid) {
-        bem.delete(bid);
+        bidDAO.delete(bid);
         return bid;
     }
 }

@@ -9,10 +9,12 @@ import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 
 @Entity
-@NamedQuery(name = Feedback.FIND_ALL_ON_BIDDER, query = "Select a From Feedback a Where a.bidder = :bidderId")
-@NamedQuery(name = Feedback.FIND_ALL_ON_AUCTION, query = "Select a From Feedback a Where a.auction = :auctionId")
+@NamedQuery(name = Feedback.FIND_ALL, query = "Select a From Feedback a")
+@NamedQuery(name = Feedback.FIND_ALL_ON_BIDDER, query = "Select a From Feedback a Where a.bidder.email = :bidderId")
+@NamedQuery(name = Feedback.FIND_ALL_ON_AUCTION, query = "Select a From Feedback a Where a.auction.id = :auctionId")
 public class Feedback implements Serializable {
 
+    public static final String FIND_ALL = "FIND_ALL_FEEDBACK";
     public final static String FIND_ALL_ON_BIDDER = "FIND_ALL_FEEDBACK_ON_AUCTION";
     public final static String FIND_ALL_ON_AUCTION = "FIND_ALL_FEEDBACK_ON_BIDDER";
 
