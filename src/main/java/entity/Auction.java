@@ -11,7 +11,7 @@ import java.util.List;
 @Entity
 @XmlRootElement
 @NamedQuery(name = Auction.FIND_ALL, query = "Select a From Auction a")
-@NamedQuery(name = Auction.FIND_ALL_PUBLISHED, query = "Select a From Auction a Where a.published")
+@NamedQuery(name = Auction.FIND_ALL_PUBLISHED, query = "Select a From Auction a Where a.published = true")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Auction implements Serializable {
 
