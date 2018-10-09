@@ -6,6 +6,8 @@ import entity.EnglishAuction;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.persistence.EntityExistsException;
+import javax.swing.text.html.parser.Entity;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
@@ -16,7 +18,10 @@ import java.util.List;
 @Stateless
 public class AuctionResource {
 
-	@EJB
+    private static final String AUCTION_NOT_FOUND = "Auction Not Found";
+    private static final String AUCTION_EXISTS = "Auction Already Exists";
+
+    @EJB
     AuctionDAO auctionDAO;
 
 	@GET
@@ -27,18 +32,35 @@ public class AuctionResource {
     @Path("{id}")
 	@GET
 	public Auction get(@PathParam("id") Long id) {
-        return auctionDAO.findById(id);
+        Auction auction = auctionDAO.findById(id);
+
+        if (auction == null)
+            throw new NotFoundException(AuctionResource.AUCTION_NOT_FOUND);
+
+        return auction;
 	}
 	
 	@POST
-    public Auction save(EnglishAuction auction) {
-        auctionDAO.create(auction);
+    public Auction save(Auction auction) {
+
+	    try {
+            auctionDAO.create(auction);
+        } catch (EntityExistsException e){
+            throw new ClientErrorException(AuctionResource.AUCTION_EXISTS, 409);
+        }
+
 		return auction;
 	}
-	
-	@DELETE
-    public Auction delete(EnglishAuction auction) {
+
+    @Path("{id}")
+    @DELETE
+    public Auction delete(@PathParam("id") Long id) {
+	    Auction auction = auctionDAO.findById(id);
+
+        if (auction == null)
+            throw new NotFoundException(AuctionResource.AUCTION_NOT_FOUND);
+
         auctionDAO.delete(auction);
-		return auction;
+        return auction;
 	}
 }
