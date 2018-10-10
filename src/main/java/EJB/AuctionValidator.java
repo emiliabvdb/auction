@@ -3,6 +3,8 @@ package EJB;
 import java.util.Date;
 import java.util.List;
 
+import javax.ejb.Stateless;
+
 import entity.Auction;
 import entity.Bid;
 
