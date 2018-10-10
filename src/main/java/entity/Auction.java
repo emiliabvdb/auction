@@ -39,19 +39,19 @@ public abstract class Auction implements Serializable {
     private Boolean published;
 
     @XmlTransient
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
     private User owner;
 
     @XmlTransient
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     private List<Category> category;
 
     @XmlTransient
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany
     private List<Bid> bids;
 
     @XmlTransient
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private Feedback feedback;
 
     public Long getId() {

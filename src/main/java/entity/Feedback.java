@@ -20,11 +20,12 @@ public class Feedback implements Serializable {
     private static final long serialVersionUID = -9002657586534820292L;
 
     @Id
+    private Long id;
+
     @XmlTransient
     @OneToOne
     private User bidder;
 
-    @Id
     @XmlTransient
     @OneToOne
     private Auction auction;
@@ -32,6 +33,14 @@ public class Feedback implements Serializable {
 	private Short rating;
 
 	private String comment;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public User getBidder() {
         return bidder;
