@@ -1,6 +1,7 @@
 package SOAP;
 
 import DAO.BidDAO;
+import EJB.BidValidator;
 import entity.Bid;
 
 import javax.ejb.EJB;
@@ -17,7 +18,12 @@ public class BidWebResource {
 
     @WebResult(name = "IsValid")
     public Boolean placeBid(Bid bid) {
-        // TODO - Logic?
-        return true;
+    	
+    	//Check if bid is valid
+        BidValidator bidVal = new BidValidator(bid);
+        if(bidVal.isValidBid(bid)) {
+        	//TODO: return some kind of error
+        }
+
     }
 }
