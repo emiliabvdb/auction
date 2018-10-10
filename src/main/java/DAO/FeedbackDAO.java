@@ -4,9 +4,11 @@ import entity.Auction;
 import entity.Feedback;
 import entity.User;
 
+import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+@Stateless
 public class FeedbackDAO extends BaseDAO<Feedback> {
 
 

@@ -2,8 +2,10 @@ package DAO;
 
 import entity.Address;
 
+import javax.ejb.Stateless;
 import java.util.List;
 
+@Stateless
 public class AddressDAO extends BaseDAO<Address> {
 
     @Override

@@ -47,7 +47,7 @@ public abstract class Auction implements Serializable {
     private List<Category> category;
 
     @XmlTransient
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Bid> bids;
 
     @XmlTransient

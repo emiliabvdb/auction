@@ -2,8 +2,10 @@ package DAO;
 
 import entity.Category;
 
+import javax.ejb.Stateless;
 import java.util.List;
 
+@Stateless
 public class CategoryDAO extends BaseDAO<Category> {
 
 
