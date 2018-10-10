@@ -1,9 +1,10 @@
 package DAO;
 
-import entity.Auction;
+import java.util.List;
 
 import javax.ejb.Stateless;
-import java.util.List;
+
+import entity.Auction;
 
 @Stateless
 public class AuctionDAO extends BaseDAO<Auction> {

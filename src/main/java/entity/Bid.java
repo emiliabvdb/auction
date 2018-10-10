@@ -5,6 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.Date;
+import javax.validation.constraints.NotNull;
 
 @TableGenerator(name = "bid", allocationSize = 1)
 @Entity
@@ -26,9 +27,9 @@ public class Bid implements Serializable {
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "bid")
     private Long id;
 
-    @Id
     @XmlTransient
     @ManyToOne(cascade = CascadeType.MERGE)
+    @NotNull
     private Auction auction;
 
     private String name;

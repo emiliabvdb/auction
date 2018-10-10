@@ -41,7 +41,7 @@ public abstract class Auction implements Serializable {
     private User owner;
 
     @XmlTransient
-    @ManyToMany(cascade = CascadeType.DETACH)
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Category> category;
 
     @XmlTransient
