@@ -21,9 +21,10 @@ public class BidWebResource {
     	
     	//Check if bid is valid
         BidValidator bidVal = new BidValidator(bid);
-        if(bidVal.isValidBid(bid)) {
-        	//TODO: return some kind of error
+        if(!bidVal.isValidBid(bid)) {
+        	return false;
         }
-
+        
+        return true;
     }
 }
