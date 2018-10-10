@@ -1,17 +1,16 @@
 package entity;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 
+@NamedQueries({
+    @NamedQuery(name = Feedback.FIND_ALL, query = "Select a From Feedback a"),
+    @NamedQuery(name = Feedback.FIND_ALL_ON_BIDDER, query = "Select a From Feedback a Where a.bidder.email = :bidderId"),
+    @NamedQuery(name = Feedback.FIND_ALL_ON_AUCTION, query = "Select a From Feedback a Where a.auction.id = :auctionId")
+})
 @Entity
-@NamedQuery(name = Feedback.FIND_ALL, query = "Select a From Feedback a")
-@NamedQuery(name = Feedback.FIND_ALL_ON_BIDDER, query = "Select a From Feedback a Where a.bidder.email = :bidderId")
-@NamedQuery(name = Feedback.FIND_ALL_ON_AUCTION, query = "Select a From Feedback a Where a.auction.id = :auctionId")
 public class Feedback implements Serializable {
 
     public static final String FIND_ALL = "FIND_ALL_FEEDBACK";

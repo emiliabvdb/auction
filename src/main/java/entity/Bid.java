@@ -6,13 +6,15 @@ import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.Date;
 
+@NamedQueries({
+    @NamedQuery(name = Bid.FIND_ALL, query = "Select b From Bid b"),
+    @NamedQuery(name = Bid.FIND_ALL_ON_AUCTION, query = "Select b From Bid b Where b.auction.id = :auctionId"),
+    @NamedQuery(name = Bid.FIND_ON_AUCTION, query = "Select b From Bid b Where b.auction.id = :auctionId And b.id = :id"),
+    @NamedQuery(name = Bid.FIND_ALL_ON_OWNER, query = "Select b From Bid b Where b.owner.email = :ownerId")
+})
 @TableGenerator(name = "bid", allocationSize = 1)
 @Entity
 @XmlRootElement
-@NamedQuery(name = Bid.FIND_ALL, query = "Select b From Bid b")
-@NamedQuery(name = Bid.FIND_ALL_ON_AUCTION, query = "Select b From Bid b Where b.auction.id = :auctionId")
-@NamedQuery(name = Bid.FIND_ON_AUCTION, query = "Select b From Bid b Where b.auction.id = :auctionId And b.id = :id")
-@NamedQuery(name = Bid.FIND_ALL_ON_OWNER, query = "Select b From Bid b Where b.owner.email = :ownerId")
 public class Bid implements Serializable {
 
     public final static String FIND_ALL = "FIND_ALL_BIDS";

@@ -7,11 +7,13 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+@NamedQueries({
+    @NamedQuery(name = Auction.FIND_ALL, query = "Select a From Auction a"),
+    @NamedQuery(name = Auction.FIND_ALL_PUBLISHED, query = "Select a From Auction a Where a.published = true")
+})
 @TableGenerator(name = "auction", allocationSize = 1)
 @Entity
 @XmlRootElement
-@NamedQuery(name = Auction.FIND_ALL, query = "Select a From Auction a")
-@NamedQuery(name = Auction.FIND_ALL_PUBLISHED, query = "Select a From Auction a Where a.published = true")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Auction implements Serializable {
 
