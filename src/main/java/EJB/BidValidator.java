@@ -9,7 +9,13 @@ import java.util.List;
 import entity.Auction;
 
 @Stateless
-public abstract class BidValidator {
+public class BidValidator {
+	Bid bid;
+	
+	public BidValidator (Bid bid){
+		this.bid = bid;
+	}
+	
 	public Boolean isValidBid(Bid bid) {
 		Auction bidAuction = bid.getAuction();
 		
