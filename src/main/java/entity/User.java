@@ -21,19 +21,19 @@ public class User extends SystemUser implements Serializable{
 	private Date dateOfBirth;
 
 	@XmlTransient
-	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
 
 	@XmlTransient
-	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToOne(cascade = CascadeType.ALL)
 	private Address billingAddress;
 
 	@XmlTransient
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Bid> bids;
 
 	@XmlTransient
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Auction> auctions;
 
 	public String getFirstName() {
