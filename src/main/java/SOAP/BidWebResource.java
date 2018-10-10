@@ -20,7 +20,7 @@ public class BidWebResource {
     public Boolean placeBid(Bid bid) {
     	
     	//Check if bid is valid
-        BidValidator bidVal = new BidValidator(bid);
+        BidValidator bidVal = new BidValidator();
         if(!bidVal.isValidBid(bid)) {
         	return false;
         }
