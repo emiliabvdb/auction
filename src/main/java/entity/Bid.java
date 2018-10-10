@@ -30,8 +30,6 @@ public class Bid implements Serializable {
 
     @XmlTransient
     @ManyToOne
-    @ManyToOne(cascade = CascadeType.MERGE)
-
     private Auction auction;
 
     private String name;
