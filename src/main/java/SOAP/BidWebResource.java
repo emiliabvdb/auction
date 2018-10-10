@@ -18,19 +18,23 @@ public class BidWebResource {
     @EJB
     private BidDAO bidDAO;
 
+     @EJB
+    BidValidator bidValidator;
+
     //a method which places a bid of a given amount in an auction and informs as to it is currently the highest bid.
     @WebResult(name = "IsValid")
     public Boolean placeBid(Bid bid) {
-    	
+
     	//Check if bid is valid
-        BidValidator bidVal = new BidValidator();
-        if(!bidVal.isValidBid(bid)) {
+        if(!bidValidator.isValidBid(bid)) {
         	return false;
         }
         //informs as to it is currently the highest bid
         List<Bid> bids = bid.getAuction().getBids();
         bids.add(bid);
         bid.getAuction().setBids(bids);
+
+        bidDAO.create(bid);
         
         return true;
     }
