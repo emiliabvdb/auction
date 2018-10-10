@@ -5,7 +5,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.Date;
-import javax.validation.constraints.NotNull;
 
 @NamedQueries({
     @NamedQuery(name = Bid.FIND_ALL, query = "Select b From Bid b"),
@@ -31,7 +30,7 @@ public class Bid implements Serializable {
 
     @XmlTransient
     @ManyToOne(cascade = CascadeType.MERGE)
-    @NotNull
+ 
     private Auction auction;
 
     private String name;
