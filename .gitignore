@@ -5,5 +5,8 @@ target/**
 .idea/**
 /.settings/**
 .settings/**
+/lib/**
+lib/**
 /target/
 /bin/
+**/*.iml
