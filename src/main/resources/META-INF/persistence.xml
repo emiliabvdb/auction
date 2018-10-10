@@ -9,6 +9,7 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
         <class>entity.Address</class>
         <class>entity.Auction</class>
         <class>entity.EnglishAuction</class>
+        <class>entity.DutchAuction</class>
         <class>entity.Bid</class>
         <class>entity.User</class>
         <class>entity.SystemUser</class>

@@ -112,6 +112,12 @@ public class Setup {
         jacketAuction.setEndDate(new GregorianCalendar(2018, Calendar.OCTOBER, 10).getTime());
         jacketAuction.setPublished(true);
         //bidList??
+        Auction dutchAuction = new DutchAuction();
+        dutchAuction.setOwner(emilia);
+        dutchAuction.setProductName("Brukt jakke");
+        dutchAuction.setStartDate(new GregorianCalendar(2018, Calendar.SEPTEMBER, 28).getTime());
+        dutchAuction.setEndDate(new GregorianCalendar(2018, Calendar.OCTOBER, 10).getTime());
+        dutchAuction.setPublished(true);
 
         List<Category> catList1 = new ArrayList<>();
         catList1.add(klaer);
@@ -169,6 +175,7 @@ public class Setup {
             userDAO.create(emilia);
             userDAO.create(frida);
             userDAO.create(mikal);
+            auctionDAO.create(dutchAuction);
             auctionDAO.create(jacketAuction);
             bidDAO.create(jacketBid1);
             bidDAO.create(jacketBid2);

@@ -39,18 +39,6 @@ public class AuctionResource {
 
         return auction;
 	}
-	
-	@POST
-    public Auction save(Auction auction) {
-
-	    try {
-            auctionDAO.create(auction);
-        } catch (EntityExistsException e){
-            throw new ClientErrorException(AuctionResource.AUCTION_EXISTS, 409);
-        }
-
-		return auction;
-	}
 
     @Path("{id}")
     @DELETE

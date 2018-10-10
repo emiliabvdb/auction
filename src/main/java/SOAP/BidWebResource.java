@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.jws.WebMethod;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 
@@ -22,6 +23,7 @@ public class BidWebResource {
     BidValidator bidValidator;
 
     //a method which places a bid of a given amount in an auction and informs as to it is currently the highest bid.
+    @WebMethod(operationName = "IsValid")
     @WebResult(name = "IsValid")
     public Boolean placeBid(Bid bid) {
 

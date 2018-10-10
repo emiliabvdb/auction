@@ -20,7 +20,7 @@ public abstract class Auction implements Serializable {
     private static final long serialVersionUID = -8947271574079458753L;
 
     public final static String FIND_ALL = "FIND_ALL_AUCTIONS";
-    public final static String FIND_ALL_PUBLISHED = "FIND_ALL_ACUTIONS_PUBLISHED";
+    public final static String FIND_ALL_PUBLISHED = "FIND_ALL_AUCTIONS_PUBLISHED";
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "auction")
