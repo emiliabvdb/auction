@@ -3,14 +3,18 @@ package entity;
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@SequenceGenerator(
+    name="auction_sequence",
+    sequenceName="auction_sequence"
+)
 @NamedQueries({
     @NamedQuery(name = Auction.FIND_ALL, query = "Select a From Auction a"),
     @NamedQuery(name = Auction.FIND_ALL_PUBLISHED, query = "Select a From Auction a Where a.published = true")
 })
-@TableGenerator(name = "auction", allocationSize = 1)
 @Entity
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -24,8 +28,8 @@ public abstract class Auction implements Serializable {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = "auction")
-    @XmlAttribute(required = true)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "auction_sequence")
+    @XmlAttribute
     private Long id;
 
     @XmlAttribute(required = true)
@@ -42,19 +46,20 @@ public abstract class Auction implements Serializable {
     @XmlAttribute(required = true)
     private Boolean published;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @XmlTransient
     private User owner;
 
     @ManyToMany
     @XmlElement
-    private List<Category> category;
+    private List<Category> category = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "auction", orphanRemoval = true)
     @XmlElement
-    private List<Bid> bids;
+    @OrderBy("amount")
+    private List<Bid> bids = new ArrayList<>();
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "auction", orphanRemoval = true)
     @XmlElement
     private Feedback feedback;
 

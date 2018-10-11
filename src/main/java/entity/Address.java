@@ -1,30 +1,45 @@
 package entity;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
-@Entity
-@TableGenerator(name = "Address", allocationSize = 1)
+@SequenceGenerator(
+    name="address_sequence",
+    sequenceName="address_sequence"
+)
 @NamedQuery(name = Address.FIND_ALL, query = "Select a From Address a")
+@Entity
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Address implements Serializable {
 
     public final static String FIND_ALL = "FIND_ALL_ADDRESS";
     private static final long serialVersionUID = -2604610351743251554L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = "Address")
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "address_sequence")
+    private Long id; // TODO  - @EmbeddedId AddresId -> Marshalling values to attributes
 
-    private String streetAddress;
-
+    @XmlAttribute(required = true)
     private Short zipCode;
 
-    private String city;
-
-    private String province;
-
+    @XmlAttribute(required = true)
     private String country;
 
+    @XmlAttribute(required = true)
+    private String streetAddress;
+
+    @XmlAttribute
+    private String city;
+
+    @XmlAttribute
+    private String province;
+
+    @XmlAttribute
     private Short floor;
 
     public Long getId() {
