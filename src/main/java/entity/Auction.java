@@ -1,6 +1,9 @@
 package entity;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
@@ -14,6 +17,7 @@ import java.util.List;
 @TableGenerator(name = "auction", allocationSize = 1)
 @Entity
 @XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Auction implements Serializable {
 
@@ -21,37 +25,43 @@ public abstract class Auction implements Serializable {
 
     public final static String FIND_ALL = "FIND_ALL_AUCTIONS";
     public final static String FIND_ALL_PUBLISHED = "FIND_ALL_AUCTIONS_PUBLISHED";
-
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "auction")
+    @XmlAttribute(required = true)
     private Long id;
 
+    @XmlAttribute(name = "product_name", required = true)
     private String productName;
 
-    private Double rating;
-
     @Temporal(TemporalType.TIMESTAMP)
+    @XmlAttribute(name = "start_date", required = true)
     private Date startDate;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @XmlAttribute(name = "end_date", required = true)
     private Date endDate;
 
+    @XmlAttribute(required = true)
     private Boolean published;
 
     @XmlTransient
     @ManyToOne
+    @XmlAttribute(required = true)
     private User owner;
 
     @XmlTransient
     @ManyToMany
+    @XmlAttribute(required = true)
     private List<Category> category;
 
     @XmlTransient
     @OneToMany(cascade = CascadeType.ALL)
+    @XmlAttribute(required = true)
     private List<Bid> bids;
 
     @XmlTransient
     @OneToOne
+    @XmlAttribute(required = true)
     private Feedback feedback;
 
     public Long getId() {
@@ -68,14 +78,6 @@ public abstract class Auction implements Serializable {
 
     public void setProductName(String productName) {
         this.productName = productName;
-    }
-
-    public Double getRating() {
-        return rating;
-    }
-
-    public void setRating(Double rating) {
-        this.rating = rating;
     }
 
     public Date getStartDate() {
