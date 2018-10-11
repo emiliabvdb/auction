@@ -14,18 +14,19 @@ import entity.Auction;
 public class BidValidator {
 
 	public Boolean isValidBid(Bid bid) {
+	    if (bid.getAmount() <= 0)
+            return false;
+
 		Auction bidAuction = bid.getAuction();
 		
 		//The bid has to be the highest bid
-		List<Bid> otherBids = bidAuction.getBids();
-		for(int i = 0; i < otherBids.size(); i++) {
-			if(otherBids.get(i).getAmount() >= bid.getAmount() ) {
-				return false;
-			}
-		}
+		for(Bid other : bidAuction.getBids()){
+            if (other.getAmount() >= bid.getAmount())
+                return false;
+        }
 		
 		//The auction has to be published
-		if (bidAuction.getPublished() == false) {
+		if (!bidAuction.getPublished()) {
 			return false;
 		}
 		
@@ -46,6 +47,7 @@ public class BidValidator {
 		if(bidder.equals(auctOwner)) {
 			return false;
 		}
+
 		return true;
 	}
 }
