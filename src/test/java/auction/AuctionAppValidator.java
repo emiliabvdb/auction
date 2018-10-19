@@ -47,7 +47,7 @@ public class AuctionAppValidator extends TestCase {
 	   
 		// Creates a service instance
 		Service service = Service.create(wsdlDocumentLocation, serviceQN);
-		Validator cardValidator = service.getPort(portQN, Validator.class);
+	    BidValidator bidVal = new BidValidator();
 	
 		// Invokes the web service
 		 Category klaer = new Category();
@@ -181,9 +181,9 @@ public class AuctionAppValidator extends TestCase {
 	    bildeBid3.setAmount(3100);
 	    bildeBid3.setAuction(bildeAuct);
 	     
-	    BidValidator bidVal = new BidValidator();
 		assertTrue("bildeBid2 should be valid", bidVal.isValidBid(bildeBid2));
 		assertFalse("bildeBid4 should not be valid", bidVal.isValidBid(bildeBid4));
+		
 		// Unpublishes the SOAP Web Service
 		endpoint.stop();
 		assertFalse(endpoint.isPublished());
