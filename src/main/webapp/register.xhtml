@@ -3,22 +3,36 @@
 		xmlns:h="http://java.sun.com/jsf/html"
 		xmlns:f="http://java.sun.com/jsf/core" >
 <h:head>
-	<title>register</title>
+	<title>Log in or register</title>
 </h:head>
 <h:body>
+	<h:form>
+		<!-- login  -->
+		<h3>Please Sign In</h3>
+		<h:panelGrid columns="2">
+			<h:outputLabel for="email">E-Mail:</h:outputLabel>
+			<h:inputText id="email" value="#{LoginController.email}" required="true" requiredMessage="Please enter your e-mail address"></h:inputText>
 
+			<h:outputLabel for="password">Password:</h:outputLabel>
+			<h:inputSecret id="password" value="#{LoginController.password}" required="true" requiredMessage="Please enter password"></h:inputSecret>
+
+			<h:commandButton action="#{LoginController.login}" value="Login"></h:commandButton>
+		</h:panelGrid>
+		
+	</h:form>
+	
 	<h:form>
 	
-		<!-- register a PostValidateEvent -->
+		<!-- register  -->
 		<f:event listener="#{registerView.validatePassword}" type="postValidate" />
 
 		<h3>Create new account</h3>
 		<h:panelGrid columns="2">
-			<h:outputLabel for="name">Name:</h:outputLabel>
-			<h:inputText id="name" value="#{registerView.name}" required="true" requiredMessage="Please enter your name" maxlength="30"></h:inputText>
+			<h:outputLabel for="firstName">Name:</h:outputLabel>
+			<h:inputText id="firstName" value="#{registerView.firstName}" required="true" requiredMessage="Please enter your first name" maxlength="30"></h:inputText>
 			
-			<h:outputLabel for="name">Name:</h:outputLabel>
-			<h:inputText id="name" value="#{registerView.name}" required="true" requiredMessage="Please enter your name" maxlength="30"></h:inputText>
+			<h:outputLabel for="lastName">Name:</h:outputLabel>
+			<h:inputText id="lastName" value="#{registerView.lastName}" required="true" requiredMessage="Please enter your last name" maxlength="30"></h:inputText>
 			
 			
 			<h:outputLabel for="email">E-Mail:</h:outputLabel>
