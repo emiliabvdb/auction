@@ -4,17 +4,21 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.logging.Logger;
 
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import DAO.UserDAO;
 import entity.Address;
 import entity.User;
 
+@Named(value= "registerView")
+@SessionScoped
 public class RegisterView implements Serializable {
 
 	private static final long serialVersionUID = 1L;
