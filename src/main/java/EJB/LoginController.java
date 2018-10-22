@@ -5,7 +5,6 @@ import java.io.Serializable;
 
 import javax.servlet.http.HttpSession;
 
-
 @Named(value="loginController")
 @SessionScoped
 public class LoginController implements Serializable{
@@ -13,7 +12,7 @@ public class LoginController implements Serializable{
 	
 	private String password;
 	
-	private String username; 
+	private String email; 
 	
 	
 	/**
@@ -31,22 +30,22 @@ public class LoginController implements Serializable{
 	}
 
 	/**
-	 * @return the username
+	 * @return the email
 	 */
-	public String getUsername() {
-		return username;
+	public String getEmail() {
+		return email;
 	}
 
 	/**
-	 * @param username the username to set
+	 * @param email the username to set
 	 */
-	public void setUsername(String username) {
-		this.username = username;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
-	public String validateUsernamePassword() {
+	public String validateEmailPassword() {
 		HttpSession session = SessionUtils.getSession();
-		session.setAttribute(Constants.USERNAME, this.username);
+		session.setAttribute(Constants.USERNAME, this.email);
 		return Constants.INDEX;
 	}
 
