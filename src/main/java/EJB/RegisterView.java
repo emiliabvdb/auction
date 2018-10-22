@@ -1,6 +1,7 @@
 package EJB;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.logging.Logger;
 
@@ -13,6 +14,7 @@ import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import DAO.AddressDAO;
 import DAO.UserDAO;
 import entity.Address;
 import entity.User;
@@ -25,6 +27,7 @@ public class RegisterView implements Serializable {
 	private static Logger log = Logger.getLogger(RegisterView.class.getName());
 	@Inject
 	private UserDAO userDAO;
+	private AddressDAO addressDAO;
 	private String name;
 	private String email;
 	private String password;
@@ -32,10 +35,19 @@ public class RegisterView implements Serializable {
 	private String firstName;
 	private String lastName;
 	private String dateStr;
-	private Date date;
-	private String addressStr;
+	private String streetAddress;
+
+    private String zipCode;
+    private String city;
+    private String province;
+    private String country;
+    private String floor;
+    
+    private int birthYear;
+    private int birthMonth;
+    private int birthDay;
+    
 	
-	private Address address;
 	public void validatePassword(ComponentSystemEvent event) {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		UIComponent components = event.getComponent();
@@ -65,6 +77,9 @@ public class RegisterView implements Serializable {
 		}
 	}
 	public String register() {
+		Address address = new Address(this.streetAddress, this.zipCode, this.city, this.country, this.province, this.floor);
+		addressDAO.create(address);
+		LocalDate date = LocalDate.of(this.birthYear, this.birthMonth, this.birthDay);
 		User user = new User(email, password, firstName, lastName, date, address);
 		userDAO.create(user);
 		log.info("New user created with e-mail: " + email + " , first name: " + name + " , last name: " + lastName + ".");
@@ -111,12 +126,6 @@ public class RegisterView implements Serializable {
 	}
 	public void setDateStr(String dateStr) {
 		this.dateStr = dateStr;
-	}
-	public String getAddressStr() {
-		return addressStr;
-	}
-	public void setAddressStr(String addressStr) {
-		this.addressStr = addressStr;
 	}
 
 }
