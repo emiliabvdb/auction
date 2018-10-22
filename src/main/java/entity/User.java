@@ -35,6 +35,18 @@ public class User extends SystemUser implements Serializable{
 	@XmlTransient
 	@OneToMany
 	private List<Auction> auctions;
+	
+	public User() {
+		
+	}
+	
+	public User (String email, String password, String firstName, String lastName, Date dateOfBirth, Address address) {
+		super(email, password);
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirth = dateOfBirth;
+		this.address = address;
+	}
 
 	public String getFirstName() {
 		return firstName;
