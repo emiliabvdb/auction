@@ -8,19 +8,43 @@
 	<title>login</title>
 </h:head>
 <h:body>
-	<h:form>
-		<h3>JSF Login Logout</h3>
-		<h:outputText value="Username" />
-		<h:inputText id="username" value="#{sessionController.username}"></h:inputText>
+	<div class="flexcontainer">
+		<div class="flexrow">
+			<h:form id="login" class="flexcolumn">
+				<h3>JSF Login Logout</h3>
+				<h:outputText value="Username" />
+				<h:inputText id="username" value="#{sessionController.username}"></h:inputText>
+			
+				<br /><br />
+		
+				<h:outputText value="Password" />
+				<h:inputSecret id="password" value="#{sessionController.password}"></h:inputSecret>
+				<br /><br />
+		
+				<h:commandButton action="#{sessionController.validateUsernamePassword()}"
+				value="Login"></h:commandButton>
+			</h:form>
+			<h:form id="register" class="flexcolumn">
+				<h3>JSF Register user</h3>
+				<h:outputText value="Username" />
+				<h:inputText id="username" value="#{sessionController.username}"></h:inputText>
+			
+				<br/><br />
+		
+				<h:outputText value="Password" />
+				<h:inputSecret id="password" value="#{sessionController.password}"></h:inputSecret>
+				<br /><br />
+				
+				<h:outputText value="Confirm password" />
+				<h:inputSecret id="password" value="#{sessionController.password}"></h:inputSecret>
+				<br /><br />
+		
+				<h:commandButton action="#{sessionController.validateUsernamePassword()}"
+				value="Login"></h:commandButton>
+			</h:form>
+		</div>
+		
+	</div>
 	
-		<br /><br />
-		
-		<h:outputText value="Password" />
-		<h:inputSecret id="password" value="#{sessionController.password}"></h:inputSecret>
-		<br /><br />
-		
-		<h:commandButton action="#{sessionController.validateUsernamePassword()}"
-			value="Login"></h:commandButton>
-	</h:form>
 </h:body>
 </html>
