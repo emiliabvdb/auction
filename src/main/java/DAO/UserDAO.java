@@ -12,6 +12,10 @@ public class UserDAO extends BaseDAO<User> {
     public User findById(Long id) {
         return em.find(User.class, id);
     }
+    
+    public User findByEmail(String email) {
+    	return em.find(User.class, email);
+    }
 
     @Override
     public List<User> findAll() {
