@@ -3,6 +3,8 @@ package EJB;
 import java.io.IOException;
 import java.io.Serializable;
 
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 
 @Named(value="loginController")
