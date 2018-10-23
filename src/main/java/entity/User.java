@@ -3,7 +3,7 @@ package entity;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -18,7 +18,7 @@ public class User extends SystemUser implements Serializable{
 
 	private String lastName;
 
-	private Date dateOfBirth;
+	private LocalDate dateOfBirth;
 
 	@XmlTransient
 	@OneToOne
@@ -40,7 +40,7 @@ public class User extends SystemUser implements Serializable{
 		
 	}
 	
-	public User (String email, String password, String firstName, String lastName, Date dateOfBirth, Address address) {
+	public User (String email, String password, String firstName, String lastName, LocalDate dateOfBirth, Address address) {
 		super(email, password);
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -64,11 +64,11 @@ public class User extends SystemUser implements Serializable{
 		this.lastName = lastName;
 	}
 
-	public Date getDateOfBirth() {
+	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(Date dateOfBirth) {
+	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 

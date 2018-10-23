@@ -3,6 +3,7 @@ package EJB;
 import entity.Bid;
 import entity.User;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -32,12 +33,12 @@ public class BidValidator {
 		
 		//The auction should not be over
 		Date now = new Date();
-		if(now.after(bidAuction.getEndDate())) {
+		if(LocalDate.now().isAfter(bidAuction.getEndDate())) {
 			return false;
 		}
 		
 		//The auction should have started
-		if(now.before(bidAuction.getStartDate())) {
+		if(LocalDate.now().isBefore(bidAuction.getStartDate())) {
 			return false;
 		}
 		

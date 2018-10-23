@@ -3,6 +3,7 @@ package entity;
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -31,13 +32,13 @@ public abstract class Auction implements Serializable {
     @XmlAttribute(required = true)
     private String productName;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    //@Temporal(TemporalType.TIMESTAMP)
     @XmlAttribute(required = true)
-    private Date startDate;
+    private LocalDate startDate;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    //@Temporal(TemporalType.TIMESTAMP)
     @XmlAttribute(required = true)
-    private Date endDate;
+    private LocalDate endDate;
 
     @XmlAttribute(required = true)
     private Boolean published;
@@ -74,19 +75,19 @@ public abstract class Auction implements Serializable {
         this.productName = productName;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 

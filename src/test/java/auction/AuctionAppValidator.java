@@ -2,6 +2,7 @@ package auction;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -91,7 +92,7 @@ public class AuctionAppValidator extends TestCase {
 	     User emilia = new User();
 	     emilia.setFirstName("Emilia");
 	     emilia.setLastName("Botnen");
-	     emilia.setDateOfBirth(new GregorianCalendar(1992, Calendar.DECEMBER, 07).getTime());
+	     emilia.setDateOfBirth(LocalDate.of(1992, 12, 07));
 	     emilia.setAddress(emiAddr);
 	     emilia.setBillingAddress(emilia.getAddress());
 	     emilia.setEmail("emibvdb@gmail.com");
@@ -102,7 +103,7 @@ public class AuctionAppValidator extends TestCase {
 	     User frida = new User();
 	     frida.setFirstName("Frida");
 	     frida.setLastName("Klockmann");
-	     frida.setDateOfBirth(new GregorianCalendar(1996, Calendar.FEBRUARY, 06).getTime());
+	     frida.setDateOfBirth(LocalDate.of(1996, 2, 06));
 	     frida.setAddress(friAddr);
 	     frida.setBillingAddress(frida.getAddress());
 	     frida.setEmail("fridaklockmann@gmail.com");
@@ -112,21 +113,21 @@ public class AuctionAppValidator extends TestCase {
 	     User mikal = new User();
 	     mikal.setFirstName("Mikal");
 	     mikal.setLastName("Fuglestein");
-	     mikal.setDateOfBirth(new GregorianCalendar(1995, Calendar.AUGUST, 21).getTime());
+	     mikal.setDateOfBirth(LocalDate.of(1995, 8, 21));
 
 	     //creating an auction
 	     Auction jacketAuction = new EnglishAuction();
 	     jacketAuction.setOwner(emilia);
 	     jacketAuction.setProductName("Brukt jakke");
-	     jacketAuction.setStartDate(new GregorianCalendar(2018, Calendar.SEPTEMBER, 28).getTime());
-	     jacketAuction.setEndDate(new GregorianCalendar(2018, Calendar.OCTOBER, 10).getTime());
+	     jacketAuction.setStartDate(LocalDate.of(2018, 9, 28));
+	     jacketAuction.setEndDate(LocalDate.of(2018, 10, 10));
 	     jacketAuction.setPublished(true);
 	      //bidList??
 	     Auction dutchAuction = new DutchAuction();
 	     dutchAuction.setOwner(emilia);
 	     dutchAuction.setProductName("Brukt jakke");
-	     dutchAuction.setStartDate(new GregorianCalendar(2018, Calendar.SEPTEMBER, 28).getTime());
-	     dutchAuction.setEndDate(new GregorianCalendar(2018, Calendar.OCTOBER, 10).getTime());
+	     dutchAuction.setStartDate(LocalDate.of(2018, 9, 28));
+	     dutchAuction.setEndDate(LocalDate.of(2018, 10, 10));
 	     dutchAuction.setPublished(true);
 
 	     List<Category> catList1 = new ArrayList<>();
@@ -155,7 +156,7 @@ public class AuctionAppValidator extends TestCase {
 	     bildeAuct.setCategory(catList2);
 	     bildeAuct.setOwner(mikal);
 	   
-	     bildeAuct.setStartDate(new GregorianCalendar(2018, Calendar.SEPTEMBER, 29).getTime());
+	     bildeAuct.setStartDate(LocalDate.of(2018, 9, 29));
 	    
 	    Bid bildeBid1 = new Bid();
 	    bildeBid1.setTimePlaced(new GregorianCalendar(2018, Calendar.SEPTEMBER, 30).getTime());

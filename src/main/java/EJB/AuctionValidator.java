@@ -1,5 +1,6 @@
 package EJB;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -21,13 +22,12 @@ public abstract class AuctionValidator<T extends Auction> {
      * Returns true if the auction can be published
      */
     public boolean validateAuctionPublishing() {
-    	//if it's already published, it can´t be published
+    	//if it's already published, it can't be published
     	if(auction.getPublished()) {
     		return false;
     	}
-    	//if the auction has ended, you cant publish it again. 
-    	Date now = new Date();
-        if (now.after(auction.getEndDate())) {
+    	//if the auction has ended, you can't publish it again. 
+        if (LocalDate.now().isAfter(auction.getEndDate())) {
          	return false;
         }
         return true;
