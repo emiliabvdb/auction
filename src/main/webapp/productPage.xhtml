@@ -8,23 +8,47 @@
 	<title>productPage</title>
 </h:head>
 <h:body>
+	<div class="header">
+		<div class="headertext">
+			<h1>Auction Application</h1>
+		</div>
+		<div class="links">
+			<a href="login_register.xhtml">Login / Register</a>
+			<a href="index.xhtml">Search products</a>
+			<a href="login_register.xhtml">My profile</a>
+		</div>
+	</div>
+	<div class="flexcontainer">
+	<div class="row">
 	<h:form>
 		
 		<h3>#{bidController.auction.productName}</h3>
 		
 		<h:panelGrid columns="2">
 			
-			<h:outputText value="remainingTime"> RemainingTime: #{BidController.auction.remainingTime}></h:outputText>
+			<h:outputText value="#{AuctionController.auction.remainingTime}"> RemainingTime: ></h:outputText>
 		
-			<img src=#{BidController.auction.image} alt="Product picture" height="42" width="42">
+			<img src=#{AuctionController.auction.image} alt="Product picture" height="42" width="42">
 			
-			<p>The product's features: #{BidController.auction.features}</p>
+			<h:outputText value="#{AuctionController.auction.features}">The product's features:</h:outputText>
 	
-			<h:inputText id="amount" value="#{BidController.auction.amount}" required="true" requiredMessage="Please enter your bid"></h:inputText>
+			<h:inputText id="amount" value="#{AuctionController.auction.amount}" required="true" requiredMessage="Please enter your bid"></h:inputText>
 			
 			<h:commandButton action="#{BidController.placeBid}" value="placedBid"></h:commandButton>
+			
+			<h:outputText value="#{AuctionController.auction.owner}"> Seller: ></h:outputText>
+			
+	</h:form>
+	<h:form>	
+			<h:outputText value="#{AuctionController.auction.getFeedback()}"> Customer review: ></h:outputText>
+			
+			<h:outputText value="#AuctionController.auction.getFeedback().getBidder()"></h:outputText>
+			<h:outputText value="#{AuctionController.auction.getFeedback()}"> : </h:outputText>
+		
 		</h:panelGrid>
 		
 	</h:form>
+	</div>
+	</div>
 </h:body>
 </html>
