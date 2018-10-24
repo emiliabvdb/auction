@@ -19,7 +19,9 @@ public class BidController implements BidService{
 
     //a method which places a bid of a given amount in an auction and informs as to it is currently the highest bid.
     @Override
-    public Boolean placeBid(Bid bid) {
+    public Boolean isValid(Long bidId) {
+
+        Bid bid = bidDAO.findById(bidId);
 
         //Check if bid is valid
         if(!bidValidator.isValidBid(bid)) {
