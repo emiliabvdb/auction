@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core" >
+<h:head>
+	<link rel="stylesheet" type="text/css" href="css/style.css">	</link>	
+	<title>Log in or register</title>
+</h:head>
+<h:body>
+	<div class="header">
+		<div class="headertext">
+			<h1>Auction Application</h1>
+		</div>
+		<div class="links">
+			<a href="login_register.xhtml">Login / Register</a>
+			<a href="index.xhtml">Search products</a>
+			<a href="login_register.xhtml">My profile</a>
+		</div>
+	</div>
+	<div class="flexcontainer">
+	<div class="row">
+		<h:form>
+		<!-- search  -->
+		<div class="search">
+			<h3>Search Page</h3>
+			<h:panelGrid columns="2">
+				<!-- text search box  -->
+				<h:inputText id="productSearch" value="#{AuctionController.setSearchWords}" required="true" requiredMessage="Search for Product"></h:inputText>
+
+				<!-- TODO: Category selection   -->
+				
+				<!-- search button  -->
+				<h:commandButton action="#{AuctionController.findAuctions(#{AuctionController.getSearchWords()},#{AuctionController.getCategory()})}" value="search"></h:commandButton>
+			</h:panelGrid>
+		</div>
+
+	</div>
+	</div>
+	
+	
+	
+	<br/><br/>
+	
+</h:body>
+</html>
