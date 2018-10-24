@@ -41,6 +41,24 @@ public class Address implements Serializable {
 
     @XmlAttribute
     private Short floor;
+    
+    public Address() {
+    	
+    }
+    
+    public Address(String address, String zipcode, String city, String country, String province, String floor) {
+    	this.streetAddress = address;
+    	this.zipCode = (short) Integer.parseInt(zipcode);
+    	this.city = city;
+    	this.country = country;
+    	this.province = province;
+    	if(floor.isEmpty()) {
+    		this.floor = 0;
+    	}else {
+    		this.floor = (short) Integer.parseInt(floor);
+    	}
+    	
+    }
 
     public Long getId() {
         return id;
@@ -97,4 +115,18 @@ public class Address implements Serializable {
     public void setFloor(Short floor) {
         this.floor = floor;
     }
+    
+    public String toString() {
+    	String ret = this.streetAddress + ", " + this.zipCode.toString() + ", " + this.city;
+    
+    	if (!this.province.isEmpty()) {
+    		String province = ", " + this.province;
+    		ret.concat(province);
+    	}
+    	
+    	ret.concat(", " + this.country);
+    	
+    	return ret;
+    }
+    
 }

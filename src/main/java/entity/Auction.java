@@ -3,18 +3,15 @@ package entity;
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
-@SequenceGenerator(
-    name="auction_sequence",
-    sequenceName="auction_sequence"
-)
 @NamedQueries({
     @NamedQuery(name = Auction.FIND_ALL, query = "Select a From Auction a"),
     @NamedQuery(name = Auction.FIND_ALL_PUBLISHED, query = "Select a From Auction a Where a.published = true")
 })
+@TableGenerator(name = "auction", allocationSize = 1)
 @Entity
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -28,38 +25,37 @@ public abstract class Auction implements Serializable {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "auction_sequence")
-    @XmlAttribute
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "auction")
+    @XmlAttribute(required = true)
     private Long id;
 
     @XmlAttribute(required = true)
     private String productName;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    //@Temporal(TemporalType.TIMESTAMP)
     @XmlAttribute(required = true)
-    private Date startDate;
+    private LocalDate startDate;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    //@Temporal(TemporalType.TIMESTAMP)
     @XmlAttribute(required = true)
-    private Date endDate;
+    private LocalDate endDate;
 
     @XmlAttribute(required = true)
     private Boolean published;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @XmlTransient
     private User owner;
 
     @ManyToMany
     @XmlElement
-    private List<Category> category = new ArrayList<>();
+    private List<Category> category;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "auction", orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
     @XmlElement
-    @OrderBy("amount")
-    private List<Bid> bids = new ArrayList<>();
+    private List<Bid> bids;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "auction", orphanRemoval = true)
+    @OneToOne
     @XmlElement
     private Feedback feedback;
 
@@ -79,19 +75,19 @@ public abstract class Auction implements Serializable {
         this.productName = productName;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 

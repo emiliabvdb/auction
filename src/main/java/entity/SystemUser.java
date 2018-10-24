@@ -25,8 +25,17 @@ public class SystemUser implements Serializable {
 
     @XmlAttribute
     private SystemUserRole role;
+    
+    public SystemUser() {
+    	
+    }
 
-    public String getEmail() {
+    public SystemUser(String email2, String password2) {
+		this.email = email2;
+		this.password = password2;
+	}
+
+	public String getEmail() {
         return email;
     }
 

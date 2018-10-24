@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core" >
+<h:head>
+	<link rel="stylesheet" type="text/css" href="css/style.css">	</link>	
+	<title>Log in or register</title>
+</h:head>
+<h:body>
+	<div class="header">
+		<div class="headertext">
+			<h1>Auction Application</h1>
+		</div>
+		<div class="links">
+			<a href="login_register.xhtml">Login / Register</a>
+			<a href="index.xhtml">Search products</a>
+			<a href="login_register.xhtml">My profile</a>
+		</div>
+	</div>
+	<div class="flexcontainer">
+	<div class="row">
+		<h:form>
+		<!-- login  -->
+		<div class="login">
+			<h3>Please Sign In</h3>
+			<h:panelGrid columns="2">
+				<h:outputLabel for="email">E-Mail:</h:outputLabel>
+				<h:inputText id="email" value="#{LoginController.email}" required="true" requiredMessage="Please enter your e-mail address"></h:inputText>
+
+				<h:outputLabel for="password">Password:</h:outputLabel>	
+				<h:inputSecret id="password" value="#{LoginController.password}" required="true" requiredMessage="Please enter password"></h:inputSecret>
+
+				<h:commandButton action="#{LoginController.login}" value="Login"></h:commandButton>
+			</h:panelGrid>
+		</div>
+		
+	</h:form>
+	
+	<h:form>
+	
+		<!-- register  -->
+		<div class="register">
+			<f:event listener="#{registerView.validatePassword}" type="postValidate" />
+
+			<h3>Create new account</h3>
+			<h:panelGrid columns="2">
+				<h:outputLabel for="firstName">First Name:</h:outputLabel>
+				<h:inputText id="firstName" value="#{registerView.firstName}" required="true" requiredMessage="Please enter your first name" maxlength="30"></h:inputText>
+			
+				<h:outputLabel for="lastName">Last Name:</h:outputLabel>
+				<h:inputText id="lastName" value="#{registerView.lastName}" required="true" requiredMessage="Please enter your last name" maxlength="30"></h:inputText>
+			
+			
+				<h:outputLabel for="email">E-Mail:</h:outputLabel>
+				<h:inputText id="email" value="#{registerView.email}" required="true" requiredMessage="Please enter your e-mail address">
+					<f:validator validatorId="emailValidator" />
+				</h:inputText>
+	
+				<h:outputLabel for="password">Password:</h:outputLabel>
+				<h:inputSecret id="password" value="#{registerView.password}" required="true" requiredMessage="Please enter password" validatorMessage="Password must contain atleast one lowercase character, uppercase character, a digit and it's length must be between 6 and 20 characters">
+					<f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})" />
+				</h:inputSecret>
+			
+				<h:outputLabel for="confirmpassword">Confirm password:</h:outputLabel>
+				<h:inputSecret id="confirmpassword" value="#{registerView.confirmPassword}" required="true" requiredMessage="Please confirm your password"></h:inputSecret>
+
+				<h:outputLabel for="dateOfBirth">Date of birth:</h:outputLabel>
+				<h:inputText id="dateOfBirth" value="#{registerView.dateOfBirth}" required="true" requiredMessage="Please enter your date Of Birth">
+				</h:inputText>
+				
+				<h:outputLabel for="streetAddress">Street address:</h:outputLabel>
+				<h:inputText id="streetAddress" value="#{registerView.streetAddress}" required="true" requiredMessage="Please enter your street address">
+				</h:inputText>
+			
+				<h:outputLabel for="zipCode">Zip Code:</h:outputLabel>
+				<h:inputText id="zipCode" value="#{registerView.zipCode}" required="true" requiredMessage="Please enter your Zip Code">
+				</h:inputText>
+			
+				<h:outputLabel for="city">City:</h:outputLabel>
+				<h:inputText id="city" value="#{registerView.city}" required="true" requiredMessage="Please enter your city">
+				</h:inputText>
+				
+				<h:outputLabel for="province">Province:</h:outputLabel>
+				<h:inputText id="province" value="#{registerView.province}" required="false" requiredMessage="Please enter your province">
+				</h:inputText>
+				
+				<h:outputLabel for="country">Country:</h:outputLabel>
+				<h:inputText id="country" value="#{registerView.country}" required="true" requiredMessage="Please enter your country">
+				</h:inputText>
+			
+				<h:outputLabel for="floor">Floor:</h:outputLabel>
+				<h:inputText id="floor" value="#{registerView.floor}" required="false" requiredMessage="Please enter your floor">
+				</h:inputText>
+				
+				<h:commandButton action="#{registerView.register}" value="Register"></h:commandButton>
+
+			</h:panelGrid>
+		</div>
+
+		</h:form>
+	</div>
+	</div>
+	
+	
+	
+	<br/><br/>
+	<!-- <h:link value="I already have an account" outcome="signin" /> -->
+	
+</h:body>
+</html>

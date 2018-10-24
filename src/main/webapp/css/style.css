@@ -1,0 +1,75 @@
+@charset "UTF-8";
+
+/*  Header */
+
+.header{
+	display: flex;
+	background-color: #ACDBA4;	
+	flex-direction: column;
+	justify-content: center;
+}
+.headertext{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	height:100px;	
+}
+h1{
+	font: 40px arial, sans-serif;
+}
+.links{
+	display: flex;
+	flex-direction: row;
+	background-color: #9EC798;
+	
+
+}
+.links a{
+	width:50%;
+	text-decoration: none;
+	text-align: center;
+	padding: 14px 25px;
+	font: 20px arial, sans-serif;
+
+}
+.links a:hover{
+	background-color: #76A39D;	
+	color: white;
+}
+a:visited {
+    color: black;
+}
+
+/*  Login/register */
+
+.flexcontainer{
+	font: 14px arial, sans-serif;
+	display:flex;
+	flex-direction:column;
+	width:100%;	
+	padding:14px 25px;
+}
+h3{
+	font: 20px arial, sans-serif;
+}
+.row{
+	display:flex;
+	flex-direction:row;
+	width:100%;	
+	justify-content:space-around;
+}
+.login{
+	display:flex;
+	flex-direction:column;
+	justify-content:space-around;
+	padding: 14px 25px;
+	border: 2px solid black;
+}
+.register{
+	display:flex;
+	flex-direction:column;
+	justify-content:space-around;
+	padding: 14px 25px;
+	border: 2px solid black;
+	
+}

@@ -1,46 +1,52 @@
 package entity;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@XmlRootElement
-@XmlAccessorType(XmlAccessType.FIELD)
 @NamedQuery(name = User.FIND_ALL, query = "Select a From User a")
 public class User extends SystemUser implements Serializable{
 
 	public final static String FIND_ALL = "FIND_ALL_USERS";
 	private static final long serialVersionUID = 5082373191804671329L;
-
-	@XmlAttribute(required = true)
+	
 	private String firstName;
 
-    @XmlAttribute(required = true)
 	private String lastName;
 
-    @XmlAttribute(required = true)
-	private Date dateOfBirth;
+	private LocalDate dateOfBirth;
 
+	@XmlTransient
 	@OneToOne
-	@XmlElement
 	private Address address;
 
+	@XmlTransient
 	@OneToOne
-    @XmlElement
 	private Address billingAddress;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "owner", orphanRemoval = true)
 	@XmlTransient
-	private List<Bid> bids = new ArrayList<>();
+	@OneToMany
+	private List<Bid> bids;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "owner", orphanRemoval = true)
 	@XmlTransient
-	private List<Auction> auctions = new ArrayList<>();
+	@OneToMany
+	private List<Auction> auctions;
+	
+	public User() {
+		
+	}
+	
+	public User (String email, String password, String firstName, String lastName, LocalDate dateOfBirth, Address address) {
+		super(email, password);
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirth = dateOfBirth;
+		this.address = address;
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -58,11 +64,11 @@ public class User extends SystemUser implements Serializable{
 		this.lastName = lastName;
 	}
 
-	public Date getDateOfBirth() {
+	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(Date dateOfBirth) {
+	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 
