@@ -9,6 +9,7 @@
 	<title>Auction Application</title>
 </h:head>
 <h:body>
+	<!-- Header -->
 	<div class="header">
 		<div class="headertext">
 			<h1>Auction Application</h1>
@@ -17,6 +18,36 @@
 			<a href="login_register.xhtml">Login / Register</a>
 			<a href="index.xhtml">Search products</a>
 			<a href="login_register.xhtml">My profile</a>
+		</div>
+	</div>
+	<!-- Header End -->
+	
+	<!-- Products -->
+	<div class="filters">
+		<div class="row"> <p>Search</p><input type="text" name="lname" placeholder="Search.."></input> </div>
+		<div class="dropdown row">
+  		<button class="dropbtn">Choose Category</button>
+  			<h:selectOneMenu value="#{auctionController.category}">
+  				<div class="dropdown-content">	
+  					<f:selectItems value="#{auctionController.categories}" 
+                  		var="category"
+                		itemLabel="#{category}"
+                  		itemValue="#{category}"/>
+                  	<a>eksempel1</a>
+                  	<a>eksempel2</a>
+                </div>
+			</h:selectOneMenu>
+		</div>
+	</div>
+	<div class="products">
+		<div class="product">
+			product1
+		</div>
+		<div class="product">
+			product2
+		</div>
+		<div class="product">
+			product3
 		</div>
 	</div>
 </h:body>
