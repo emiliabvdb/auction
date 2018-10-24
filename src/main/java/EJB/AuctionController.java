@@ -1,30 +1,81 @@
 package EJB;
 
-import DAO.AuctionDAO;
-import SOAP.AuctionService;
+import java.io.Serializable;
+import java.security.Principal;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import REST.AuctionResource;
+import SOAP.AuctionWebResource;
 import entity.Auction;
+//import ejb.UserEJB;
+import entity.User;
 
-import javax.ejb.EJB;
-import javax.jws.WebService;
-import java.util.ArrayList;
+@SuppressWarnings("deprecation")
+@ManagedBean
+@SessionScoped
+public class AuctionController implements Serializable {
 
-@WebService(endpointInterface = "SOAP.AuctionService")
-public class AuctionController implements AuctionService {
+	private static final long serialVersionUID = 3254181235309041386L;
 
-    @EJB
-    AuctionDAO auctionDAO;
+	//private static Logger log = Logger.getLogger(LoginView.class.getName());
 
-    public Auction get(Long auctionId) {
-        Auction auction = auctionDAO.findById(auctionId);
-        return auction;
-    }
+	//@Inject
+	//private UserEJB userEJB;
 
-    public ArrayList<Auction> getPublished() {
-        ArrayList list = (ArrayList<Auction>) auctionDAO.findAllPublished();
-        if (list == null){
-            list = new ArrayList<Auction>();
-        }
-        return list;
-    }
+	private Long auctionId;
+	//private String productName;
 
+	private Auction auction;
+	
+
+	public String getAuc() {
+
+		this.auction = AuctionWebResource.get(auctionId);//userEJB.findAuctionById(principal.getName());
+
+	}
+
+
+	public List<String> getAllAuctions() {
+		String allAuctString = Auction.FIND_ALL_PUBLISHED;
+		String[] allAuctArray = allAuctString.split(" ");
+		List<String> listOfAuc = null;
+		for(int i = 0; i<allAuctArray.length; i++)
+			listOfAuc.add(allAuctArray[i]);
+		return listOfAuc;
+	}
+/**
+	public String getProductName() {
+		return productName;
+	}
+
+	public String getRemainingTime() {
+		return remainingTime;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public String getFeedback() {
+		return feedback;
+	}
+
+	public String getFeature() {
+		return feature;
+	}
+**/
+	
 }
