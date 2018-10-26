@@ -27,19 +27,40 @@
 		<div class="row"> <p>Search</p><input type="text" name="lname" placeholder="Search.."></input> </div>
 		<div class="dropdown row">
   		<button class="dropbtn">Choose Category</button>
-  			<h:selectOneMenu value="#{auctionController.category}">
+  			<h:selectOneMenu value="#{auctionController.getAllCategories()}">
   				<div class="dropdown-content">	
-  					<f:selectItems value="#{auctionController.categories}" 
-                  		var="category"
-                		itemLabel="#{category}"
-                  		itemValue="#{category}"/>
+  					<f:selectItems value="#{auctionController.getAllCategories()}"/>
                   	<a>eksempel1</a>
                   	<a>eksempel2</a>
                 </div>
 			</h:selectOneMenu>
+			<h:commandButton value="submit">Submit</h:commandButton>
 		</div>
 	</div>
 	<div class="products">
+		<h:dataTable value="#{auctionController.getAllAuctions()}" var="u" border="1">
+			<h:column>
+				<f:facet name="header"> User ID </f:facet>
+				#{u.userID}
+			</h:column>
+
+			<h:column>
+				<f:facet name="header"> Name</f:facet>
+				#{u.name}
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Address </f:facet>
+				#{u.address}
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Created Date</f:facet>
+				#{u.created_date}
+			</h:column>
+		</h:dataTable>
+	
+	
 		<div class="product">
 			product1
 		</div>
@@ -49,6 +70,9 @@
 		<div class="product">
 			product3
 		</div>
+	</div>
+	<div class="footer">
+		<p>This is our footer</p>
 	</div>
 </h:body>
 </html>
