@@ -2,6 +2,7 @@ package EJB;
 
 import java.io.Serializable;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -18,9 +19,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import DAO.AuctionDAO;
+import DAO.CategoryDAO;
 import REST.AuctionResource;
 import SOAP.AuctionWebResource;
 import entity.Auction;
+import entity.Category;
 //import ejb.UserEJB;
 import entity.User;
 
@@ -35,9 +38,14 @@ public class AuctionController implements Serializable {
 	
 	private Auction auction;
 	
-
+	private List<Auction> allAuctions = new ArrayList<>();
+	private List<Category> allCategories = new ArrayList<>();
+	
+	AuctionDAO aDAO = new AuctionDAO();
+	
+	CategoryDAO cDAO = new CategoryDAO();
+	
 	public String getAuc() {
-		
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
 		
@@ -49,15 +57,17 @@ public class AuctionController implements Serializable {
 	}
 
 
-	public List<String> getAllAuctions() {
-		String allAuctString = Auction.FIND_ALL_PUBLISHED;
-		String[] allAuctArray = allAuctString.split(" ");
-		List<String> listOfAuc = null;
-		for(int i = 0; i<allAuctArray.length; i++)
-			listOfAuc.add(allAuctArray[i]);
-		//AuctionDAO.findAllPublished();
-		return listOfAuc;
+	public List<Auction> getAllAuctions() {	
+		List<Auction> auctionList = aDAO.findAllPublished();
+		return auctionList;
 	}
+	
+	public List<Category> getAllCategories() {	
+		List<Category> catList = cDAO.findAll();
+		return catList;
+	}
+	
+	
 /**
 	public String getProductName() {
 		return productName;
