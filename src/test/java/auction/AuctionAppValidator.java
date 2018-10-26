@@ -13,7 +13,7 @@ import javax.xml.validation.Validator;
 import javax.xml.ws.Endpoint;
 import javax.xml.ws.Service;
 
-import org.junit.Test;
+//import org.junit.Test;
 
 import EJB.BidValidator;
 import entity.Address;
@@ -31,7 +31,7 @@ public class AuctionAppValidator extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 	}
-	@Test
+	//@Test
 	public void shouldCheckCreditCardValidity() throws MalformedURLException {
 		
 		// Publishes the SOAP Web Service

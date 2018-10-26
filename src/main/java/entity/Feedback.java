@@ -2,7 +2,7 @@ package entity;
 
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.*;
 import java.io.Serializable;
 
 @NamedQueries({
@@ -11,36 +11,39 @@ import java.io.Serializable;
     @NamedQuery(name = Feedback.FIND_ALL_ON_AUCTION, query = "Select a From Feedback a Where a.auction.id = :auctionId")
 })
 @Entity
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Feedback implements Serializable {
 
     public static final String FIND_ALL = "FIND_ALL_FEEDBACK";
     public final static String FIND_ALL_ON_BIDDER = "FIND_ALL_FEEDBACK_ON_AUCTION";
     public final static String FIND_ALL_ON_AUCTION = "FIND_ALL_FEEDBACK_ON_BIDDER";
 
+    final static String BIDDER_ID = "bidder_id";
+    final static String AUCTION_ID = "auction_id";
+
     private static final long serialVersionUID = -9002657586534820292L;
 
-    @Id
-    private Long id;
-
+    @EmbeddedId
     @XmlTransient
-    @OneToOne
-    private User bidder;
+    private FeedbackId id;
 
-    @XmlTransient
-    @OneToOne
-    private Auction auction;
-
+    @XmlAttribute(required = true)
 	private Short rating;
 
+	@XmlElement
 	private String comment;
 
-    public Long getId() {
-        return id;
-    }
+    @OneToOne(optional = false)
+    @XmlTransient
+    @JoinColumn(name = Feedback.BIDDER_ID, nullable = false, updatable = false, insertable = false)
+    private User bidder;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @OneToOne(optional = false)
+    @XmlTransient
+    @JoinColumn(name = Feedback.AUCTION_ID, nullable = false, updatable = false, insertable = false)
+    private Auction auction;
+
 
     public User getBidder() {
         return bidder;

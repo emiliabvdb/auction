@@ -37,4 +37,8 @@ public class AuctionDAO extends BaseDAO<Auction> {
     public List<Auction> findAllPublished() {
         return em.createNamedQuery(Auction.FIND_ALL_PUBLISHED, Auction.class).getResultList();
     }
+
+    public List<Auction> findAllIncomplete() {
+        return em.createNamedQuery(Auction.FIND_ALL_INCOMPLETE, Auction.class).getResultList();
+    }
 }

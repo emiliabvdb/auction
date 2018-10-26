@@ -5,13 +5,16 @@ import javax.xml.bind.annotation.*;
 import java.io.Serializable;
 import java.util.Date;
 
+@SequenceGenerator(
+    name="bid_sequence",
+    sequenceName="bid_sequence"
+)
 @NamedQueries({
     @NamedQuery(name = Bid.FIND_ALL, query = "Select b From Bid b"),
     @NamedQuery(name = Bid.FIND_ALL_ON_AUCTION, query = "Select b From Bid b Where b.auction.id = :auctionId"),
     @NamedQuery(name = Bid.FIND_ON_AUCTION, query = "Select b From Bid b Where b.auction.id = :auctionId And b.id = :id"),
     @NamedQuery(name = Bid.FIND_ALL_ON_OWNER, query = "Select b From Bid b Where b.owner.email = :ownerId")
 })
-@TableGenerator(name = "bid", allocationSize = 1)
 @Entity
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -25,13 +28,9 @@ public class Bid implements Serializable {
     private static final long serialVersionUID = 2992572541056266703L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = "bid")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bid_sequence")
     @XmlAttribute
     private Long id;
-
-    @ManyToOne
-    @XmlTransient
-    private Auction auction;
 
     @XmlAttribute(required = true)
     private String name;
@@ -43,7 +42,11 @@ public class Bid implements Serializable {
     @XmlAttribute(required = true)
     private Date timePlaced;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @XmlTransient
+    private Auction auction;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @XmlElement
     private User owner;
 

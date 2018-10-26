@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import DAO.AuctionDAO;
 import REST.AuctionResource;
 import SOAP.AuctionWebResource;
 import entity.Auction;
@@ -30,20 +31,20 @@ public class AuctionController implements Serializable {
 
 	private static final long serialVersionUID = 3254181235309041386L;
 
-	//private static Logger log = Logger.getLogger(LoginView.class.getName());
-
-	//@Inject
-	//private UserEJB userEJB;
-
 	private Long auctionId;
-	//private String productName;
-
+	
 	private Auction auction;
 	
 
 	public String getAuc() {
-
-		this.auction = AuctionWebResource.get(auctionId);//userEJB.findAuctionById(principal.getName());
+		
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+		
+		Principal principal = request.getUserPrincipal(); 
+		//this.user = userEJB.findAuctionById(principal.getName());
+		auctionId = principal.getName();
+		this.auction = AuctionDAO.findById(auctionId);
 
 	}
 
@@ -54,6 +55,7 @@ public class AuctionController implements Serializable {
 		List<String> listOfAuc = null;
 		for(int i = 0; i<allAuctArray.length; i++)
 			listOfAuc.add(allAuctArray[i]);
+		//AuctionDAO.findAllPublished();
 		return listOfAuc;
 	}
 /**

@@ -1,15 +1,17 @@
 package entity;
 
+import org.eclipse.persistence.annotations.Converter;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @NamedQueries({
     @NamedQuery(name = Auction.FIND_ALL, query = "Select a From Auction a"),
-    @NamedQuery(name = Auction.FIND_ALL_PUBLISHED, query = "Select a From Auction a Where a.published = true")
+    @NamedQuery(name = Auction.FIND_ALL_PUBLISHED, query = "Select a From Auction a Where a.published = true"),
+    @NamedQuery(name = Auction.FIND_ALL_INCOMPLETE, query = "Select a From Auction a Where a.complete = false")
 })
 @TableGenerator(name = "auction", allocationSize = 1)
 @Entity
@@ -22,6 +24,7 @@ public abstract class Auction implements Serializable {
 
     public final static String FIND_ALL = "FIND_ALL_AUCTIONS";
     public final static String FIND_ALL_PUBLISHED = "FIND_ALL_AUCTIONS_PUBLISHED";
+    public final static String FIND_ALL_INCOMPLETE = "FIND_ALL_AUCTIONS_INCOMPLETE";
 
 
     @Id
@@ -32,16 +35,19 @@ public abstract class Auction implements Serializable {
     @XmlAttribute(required = true)
     private String productName;
 
-    //@Temporal(TemporalType.TIMESTAMP)
+    @Converter(name = "startDate",converterClass = LocalDateAttributeConverter.class)
     @XmlAttribute(required = true)
     private LocalDate startDate;
 
-    //@Temporal(TemporalType.TIMESTAMP)
+    @Converter(name = "endDate",converterClass = LocalDateAttributeConverter.class)
     @XmlAttribute(required = true)
     private LocalDate endDate;
 
     @XmlAttribute(required = true)
     private Boolean published;
+
+    @XmlAttribute(required = true)
+    private Boolean complete = false;
 
     @ManyToOne
     @XmlTransient
@@ -97,6 +103,14 @@ public abstract class Auction implements Serializable {
 
     public void setPublished(Boolean published) {
         this.published = published;
+    }
+
+    public Boolean getComplete() {
+        return complete;
+    }
+
+    public void setComplete(Boolean complete) {
+        this.complete = complete;
     }
 
     public entity.User getOwner() {
