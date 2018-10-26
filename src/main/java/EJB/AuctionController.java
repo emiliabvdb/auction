@@ -34,27 +34,15 @@ public class AuctionController implements Serializable {
 
 	private static final long serialVersionUID = 3254181235309041386L;
 
-	private Long auctionId;
-	
-	private Auction auction;
 	
 	private List<Auction> allAuctions = new ArrayList<>();
 	private List<Category> allCategories = new ArrayList<>();
+	
 	
 	AuctionDAO aDAO = new AuctionDAO();
 	
 	CategoryDAO cDAO = new CategoryDAO();
 	
-	public String getAuc() {
-		FacesContext context = FacesContext.getCurrentInstance();
-		HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-		
-		Principal principal = request.getUserPrincipal(); 
-		//this.user = userEJB.findAuctionById(principal.getName());
-		auctionId = principal.getName();
-		this.auction = AuctionDAO.findById(auctionId);
-
-	}
 
 
 	public List<Auction> getAllAuctions() {	
@@ -66,28 +54,6 @@ public class AuctionController implements Serializable {
 		List<Category> catList = cDAO.findAll();
 		return catList;
 	}
-	
-	
-/**
-	public String getProductName() {
-		return productName;
-	}
 
-	public String getRemainingTime() {
-		return remainingTime;
-	}
-
-	public String getImage() {
-		return image;
-	}
-
-	public String getFeedback() {
-		return feedback;
-	}
-
-	public String getFeature() {
-		return feature;
-	}
-**/
 	
 }
