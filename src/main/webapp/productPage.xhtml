@@ -21,17 +21,13 @@
 	<div class="flexcontainer">
 	<div class="row">
 	<h:form>
-		<h3>Hello #{loginView.authenticatedUser.name}</h3>
-		<p>Your user id is #{loginView.authenticatedUser.email}</p>
-		<h3>Product page #{loginView.authenticatedUser.name}</h3>
+		<h3>Product page #{AuctionController.auction.productName}</h3>
 		<!-- Product page  -->
 
 		<!-- AuctionController don't exist, need to make, or something.. calls are made up  -->
 		<!-- Calls here are just to understand what want to be called, need to be change when made a controller?  -->
 		<h:outputText value="#{AuctionController.auction.productName}" />
-		
-		<h:panelGrid columns="2">
-			
+	
 			<h:outputText value="#{AuctionController.auction.remainingTime}"> RemainingTime: ></h:outputText>
 		
 			<img src=#{AuctionController.auction.image} alt="Product picture" height="42" width="42">
@@ -51,8 +47,6 @@
 			<h:outputText value="#AuctionController.auction.getFeedback().getBidder()"></h:outputText>
 			
 			<h:outputText value="#{AuctionController.auction.getFeedback()}"> : </h:outputText>
-		
-		</h:panelGrid>
 		
 	</h:form>
 	</div>
