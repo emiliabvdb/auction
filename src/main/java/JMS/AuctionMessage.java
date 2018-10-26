@@ -7,7 +7,11 @@ import java.io.Serializable;
 
 public class AuctionMessage implements Serializable {
 
-    private Auction auction;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Auction auction;
     private User winner;
     private User seller;
 

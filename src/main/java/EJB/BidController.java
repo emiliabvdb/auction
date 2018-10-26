@@ -18,7 +18,6 @@ public class BidController implements BidService{
     private BidValidator bidValidator;
 
     //a method which places a bid of a given amount in an auction and informs as to it is currently the highest bid.
-    @Override
     public Boolean isValid(Long bidId) {
 
         Bid bid = bidDAO.findById(bidId);
@@ -32,4 +31,10 @@ public class BidController implements BidService{
 
         return true;
     }
+
+	@Override
+	public Boolean placeBid(Bid bid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

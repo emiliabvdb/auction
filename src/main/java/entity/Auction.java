@@ -1,6 +1,5 @@
 package entity;
 
-import org.eclipse.persistence.annotations.Converter;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;
@@ -35,11 +34,11 @@ public abstract class Auction implements Serializable {
     @XmlAttribute(required = true)
     private String productName;
 
-    @Converter(name = "startDate",converterClass = LocalDateAttributeConverter.class)
+//    @Converter(converter = LocalDateAttributeConverter.class)
     @XmlAttribute(required = true)
     private LocalDate startDate;
 
-    @Converter(name = "endDate",converterClass = LocalDateAttributeConverter.class)
+    //@Converter(name = "endDate",converterClass = LocalDateAttributeConverter.class)
     @XmlAttribute(required = true)
     private LocalDate endDate;
 
