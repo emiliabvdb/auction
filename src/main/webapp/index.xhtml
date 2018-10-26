@@ -29,14 +29,12 @@
   		<button class="dropbtn">Choose Category</button>
   			<h:selectOneMenu value="#{auctionController.category}">
   				<div class="dropdown-content">	
-  					<f:selectItems value="#{auctionController.categories}" 
-                  		var="category"
-                		itemLabel="#{category}"
-                  		itemValue="#{category}"/>
+  					<f:selectItems value="#{auctionController.categories}"/>
                   	<a>eksempel1</a>
                   	<a>eksempel2</a>
                 </div>
 			</h:selectOneMenu>
+			<h:commandButton value="submit">Submit</h:commandButton>
 		</div>
 	</div>
 	<div class="products">
@@ -49,6 +47,9 @@
 		<div class="product">
 			product3
 		</div>
+	</div>
+	<div class="footer">
+		<p>This is our footer</p>
 	</div>
 </h:body>
 </html>
